@@ -14,7 +14,7 @@ describe Boxes::Environment do
     FileUtils.touch(current_directory + '/templates/ubuntu/preseed.cfg')
 
     FileUtils.mkdir_p(current_directory + '/scripts')
-    FileUtils.touch(current_directory + '/scripts/postinstall.sh')
+    FileUtils.touch(current_directory + '/scripts/prepare.sh')
     FileUtils.touch(current_directory + '/scripts/purge.sh')
   end
 
@@ -22,7 +22,7 @@ describe Boxes::Environment do
     it 'successfully builds up a working tree' do
       working_dir = Boxes.config.working_dir
       test_template = working_dir + 'templates/ubuntu/trusty64.erb'
-      test_script = working_dir + 'scripts/postinstall.sh'
+      test_script = working_dir + 'scripts/prepare.sh'
 
       env
 
@@ -57,7 +57,7 @@ describe Boxes::Environment do
   describe '#available_scripts' do
     it 'lists available scripts' do
       expect(env.available_scripts).to be_a(Array)
-      expect(env.available_scripts).to include('postinstall.sh')
+      expect(env.available_scripts).to include('prepare.sh')
     end
 
     it 'doesn\'t include hidden scripts' do

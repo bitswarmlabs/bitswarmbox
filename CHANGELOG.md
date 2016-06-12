@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.0 (12/06/2016)
+
+* Creating forked version for Bitswarm Labs.
+
 ## 2.2.0 (10/05/2016)
 
 * Update the Trusty ISO image to a working kernel.
