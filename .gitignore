@@ -73,5 +73,4 @@ output-*
 # Vagrant
 .vagrant/
 
-templates/**/*-erb.json
-
+json/
