@@ -55,6 +55,7 @@ fabric.properties
 /pkg/
 /spec/reports/
 /tmp/
+/vendor/
 
 # Preloaded SSH keys
 keys/
