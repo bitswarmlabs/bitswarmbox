@@ -45,7 +45,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-# Packer and related
+# Rake and Packer generated cruft
 /.bundle/
 /.yardoc
 /Gemfile.lock
@@ -56,6 +56,20 @@ fabric.properties
 /spec/reports/
 /tmp/
 
-output-*
-*.box
+# Preloaded SSH keys
+keys/
+!keys/.gitkeep
+
+# Local Hiera overrides
+puppet/hieradata/local.yaml
+
+# Cache objects
 packer_cache/
+
+# For built boxes
+*.box
+output-*
+
+# Vagrant
+.vagrant/
+

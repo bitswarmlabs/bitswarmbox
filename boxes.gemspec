@@ -6,8 +6,8 @@ require 'boxes/version'
 Gem::Specification.new do |spec|
   spec.name          = 'boxes'
   spec.version       = Boxes::VERSION
-  spec.authors       = ['Nick Charlton']
-  spec.email         = ['nick@nickcharlton.net']
+  spec.authors       = ['Bitswarm Labs']
+  spec.email         = ['ops@bitswarm.io']
 
   spec.summary       = 'A command line tool to take the complexity out of '\
                        'building Vagrant boxes.'
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
     combine as you need. There are also a set of pre-build boxes which are
     regenerated regularly.'
   EOF
-  spec.homepage      = 'https://github.com/nickcharlton/boxes'
+  spec.homepage      = 'https://github.com/bitswarmlabs/packer-bitswarm-boxes'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($RS)
