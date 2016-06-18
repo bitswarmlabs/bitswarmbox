@@ -1,4 +1,4 @@
 # Versions and other declarations.
-module Boxes
-  VERSION = "3.0-dev".freeze
+module BitswarmBox
+  VERSION = "0.5.1.pre1".freeze
 end
