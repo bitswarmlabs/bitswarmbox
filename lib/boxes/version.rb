@@ -1,4 +1,4 @@
 # Versions and other declarations.
 module Boxes
-  VERSION = "3.0-dev".freeze
+  VERSION = "2.3.0".freeze
 end
