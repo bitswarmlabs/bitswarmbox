@@ -1,4 +1,4 @@
 # Versions and other declarations.
 module BitswarmBox
-  VERSION = "0.5.1.pre2".freeze
+  VERSION = "1.0.0.pre1".freeze
 end
