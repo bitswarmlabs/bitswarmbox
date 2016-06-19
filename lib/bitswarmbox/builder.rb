@@ -1,13 +1,13 @@
 module BitswarmBox
   # Class which drives the build process.
   class Builder
-    include Boxes::Errors
+    include BitswarmBox::Errors
 
     attr_accessor :name, :template, :scripts, :provider
 
     # Initialise a new build.
     #
-    # @param env [Boxes::Environment] environment to operate in.
+    # @param env [BitswarmBox::Environment] environment to operate in.
     # @param args [Hash]
     # @param template [String] the name of the template.
     # @param scripts [Array] scripts to include in the build.
@@ -37,19 +37,19 @@ module BitswarmBox
                                           scripts: scripts)
 
       # write the template to a file
-      File.open(Boxes.config.working_dir + "#{build_name}.json", 'w') do |f|
+      File.open(BitswarmBox.config.working_dir + "#{build_name}.json", 'w') do |f|
         f.puts rendered_template
       end
 
       # set the environment vars
-      Boxes.config.environment_vars.each do |e|
+      BitswarmBox.config.environment_vars.each do |e|
         e.each do |k, v|
           ENV[k] = v.to_s
         end
       end
 
       # execute the packer command
-      FileUtils.chdir(Boxes.config.working_dir)
+      FileUtils.chdir(BitswarmBox.config.working_dir)
       cmd = "packer build #{build_name}.json"
       status = Subprocess.run(cmd) do |stdout, stderr, _thread|
         puts stdout unless stdout.nil?
@@ -62,7 +62,7 @@ module BitswarmBox
       end
 
       if status.exitstatus == 0
-        FileUtils.mv(Boxes.config.working_dir + box_name,
+        FileUtils.mv(BitswarmBox.config.working_dir + box_name,
                      "#{original_directory}/#{name}.box")
       else
         fail BuildRunError,

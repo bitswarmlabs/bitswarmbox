@@ -1,22 +1,22 @@
 module BitswarmBox
   # Representations of Packer templates.
   class Template
-    include Boxes::Errors
+    include BitswarmBox::Errors
 
     attr_reader :name, :template
 
     # Load a template with a given name.
     #
-    # @param env [Boxes::Environment] the environment to source templates.
+    # @param env [BitswarmBox::Environment] the environment to source templates.
     # @param name [String] the name of the template.
     #
-    # @return [Boxes::Template] a template instance.
+    # @return [BitswarmBox::Template] a template instance.
     def initialize(env, name)
       fail(TemplateNotFoundError) unless env.available_templates.include?(name)
 
       @name = name
       @template = ''
-      File.open(Boxes.config.working_dir + "templates/#{name}.erb") do |f|
+      File.open(BitswarmBox.config.working_dir + "templates/#{name}.erb") do |f|
         @template << f.read
       end
     end

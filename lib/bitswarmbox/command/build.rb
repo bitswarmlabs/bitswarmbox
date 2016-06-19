@@ -63,11 +63,11 @@ module BitswarmBox
       end
 
       def run
-        env = Boxes::Environment.new
-        builder = Boxes::Builder.new(env, @build)
+        env = BitswarmBox::Environment.new
+        builder = BitswarmBox::Builder.new(env, @build)
         builder.run
         builder.clean
-      rescue Boxes::Errors::BuildRunError => e
+      rescue BitswarmBox::Errors::BuildRunError => e
         puts "[!] #{e}".red
         exit 1
       end

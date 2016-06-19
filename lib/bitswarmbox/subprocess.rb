@@ -2,7 +2,7 @@ module BitswarmBox
   # Standardise handling the stdout and stderr from Open3.
   #
   # @example Print the values returned to stdout and stderr
-  #   Boxes::Utils::Subprocess.run 'ls' do |stdout, stderr, thread|
+  #   BitswarmBox::Utils::Subprocess.run 'ls' do |stdout, stderr, thread|
   #     puts stdout unless stdout == nil
   #     puts stderr unless stderr == nil
   #   end

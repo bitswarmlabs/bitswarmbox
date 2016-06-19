@@ -1,5 +1,5 @@
 module BitswarmBox
-  # Stores the configuration for Boxes.
+  # Stores the configuration for BitswarmBox.
   class Config
     # The default settings for the configuration.
     DEFAULTS = {
@@ -36,7 +36,7 @@ module BitswarmBox
     # Paths known to boxes for discovering scripts.
     attr_accessor :script_paths
 
-    # A Hash of environment variables Boxes sets in the run environment.
+    # A Hash of environment variables BitswarmBox sets in the run environment.
     attr_accessor :environment_vars
 
     def initialize

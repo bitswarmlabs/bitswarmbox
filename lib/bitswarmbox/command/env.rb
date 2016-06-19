@@ -20,15 +20,15 @@ module BitswarmBox
         def run # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
           puts 'Configuration:'.underline
           puts ''
-          puts "HOME_DIR=\"#{Boxes.config.home_dir}\""
-          puts "WORKING_DIR=\"#{Boxes.config.working_dir}\""
-          puts "TEMPLATE_PATHS=\"#{Boxes.config.template_paths.join(', ')}\""
-          puts "SCRIPT_PATHS=\"#{Boxes.config.script_paths.join(', ')}\""
+          puts "HOME_DIR=\"#{BitswarmBox.config.home_dir}\""
+          puts "WORKING_DIR=\"#{BitswarmBox.config.working_dir}\""
+          puts "TEMPLATE_PATHS=\"#{BitswarmBox.config.template_paths.join(', ')}\""
+          puts "SCRIPT_PATHS=\"#{BitswarmBox.config.script_paths.join(', ')}\""
 
           puts ''
           puts 'Environment Variables:'.underline
           puts ''
-          Boxes.config.environment_vars.each do |e|
+          BitswarmBox.config.environment_vars.each do |e|
             puts "#{e.keys.join}=\"#{e.values.join}\""
           end
         end
@@ -40,7 +40,7 @@ module BitswarmBox
         self.description = 'Removes any files from the working directory.'
 
         def run
-          working_dir = Boxes.config.working_dir
+          working_dir = BitswarmBox.config.working_dir
 
           FileUtils.rm_rf(working_dir) if working_dir.exist?
         end
