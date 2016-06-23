@@ -1,13 +1,18 @@
 #!/bin/bash
+export LC_ALL=C
+export DEBIAN_FRONTEND=noninteractive
+minimal_apt_get_install='apt-get install -y --no-install-recommends'
 
 ##
 # Configure the relevant VM tools for this builder.
 ##
 
+set -e
+
 case $PACKER_BUILDER_TYPE in
     'virtualbox-iso')
         echo "Installing VirtualBox Guest Additions..."
-        apt-get -qy install dkms
+        $minimal_apt_get_install dkms
         mount -o loop /home/vagrant/VBoxGuestAdditions.iso /mnt
         sh /mnt/VBoxLinuxAdditions.run
         umount /mnt

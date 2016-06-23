@@ -1,4 +1,7 @@
 #!/bin/bash
+export LC_ALL=C
+export DEBIAN_FRONTEND=noninteractive
+minimal_apt_get_install='apt-get install -y --no-install-recommends'
 
 # this installs chruby, ruby-install and a selection of rubies and is used in
 # the 'ruby' special box type.
@@ -37,5 +40,3 @@ source /usr/local/share/chruby/chruby.sh
 for ruby in `chruby`; do
     chruby-exec $ruby -- gem install bundler
 done
-
-exit

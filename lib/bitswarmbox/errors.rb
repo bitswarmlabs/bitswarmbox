@@ -1,5 +1,5 @@
 module BitswarmBox
-  # A collection of errors which can be raised by boxes.
+  # A collection of errors which can be raised by bitswarmbox.
   module Errors
     # Base error class for all other errors.
     class BitswarmBoxError < StandardError; end

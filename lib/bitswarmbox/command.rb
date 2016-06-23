@@ -2,6 +2,9 @@ module BitswarmBox
   # Class which encapsulates the command line handling.
   class Command < CLAide::Command
     require 'bitswarmbox/command/build'
+    require 'bitswarmbox/command/build/vagrant'
+    require 'bitswarmbox/command/build/aws'
+
     require 'bitswarmbox/command/env'
 
     self.abstract_command = true

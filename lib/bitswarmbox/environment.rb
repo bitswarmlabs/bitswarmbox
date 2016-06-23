@@ -1,11 +1,13 @@
 module BitswarmBox
-  # For creating and managing the environment which boxes uses.
+  # For creating and managing the environment which bitswarmbox uses.
   class Environment
     def initialize
       FileUtils.mkdir_p(BitswarmBox.config.working_dir)
 
       copy_templates
       copy_scripts
+      copy_puppet_lib
+      copy_ssh_keys
     end
 
     def available_templates
@@ -67,6 +69,30 @@ module BitswarmBox
       BitswarmBox.config.script_paths.each do |script_path|
         Dir.glob("#{script_path}/*").each do |src_script|
           FileUtils.cp_r(src_script, scripts_dir)
+        end
+      end
+    end
+
+    def copy_puppet_lib
+      puppet_lib_dir = BitswarmBox.config.working_dir + 'puppet'
+
+      FileUtils.mkdir_p(puppet_lib_dir)
+
+      BitswarmBox.config.puppet_lib_paths.each do |puppet_lib_path|
+        Dir.glob("#{puppet_lib_path}/*").each do |src_puppet_lib|
+          FileUtils.cp_r(src_puppet_lib, puppet_lib_dir)
+        end
+      end
+    end
+
+    def copy_ssh_keys
+      key_dir = BitswarmBox.config.working_dir + 'keys'
+
+      FileUtils.mkdir_p(BitswarmBox.config.working_dir + 'keys')
+
+      BitswarmBox.config.ssh_key_paths.each do |key_path|
+        Dir.glob("#{key_path}/*").each do |src_keyfile|
+          FileUtils.cp_r(src_keyfile, key_dir)
         end
       end
     end

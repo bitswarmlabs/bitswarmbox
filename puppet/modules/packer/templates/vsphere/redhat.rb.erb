@@ -1,0 +1,66 @@
+#!/usr/bin/ruby
+
+
+hostname = `vmtoolsd --cmd "info-get guestinfo.hostname"`
+
+hostname = hostname.chomp
+
+puts "Nice to meet you, my VM name is '#{hostname}'."
+
+puts "\n"
+
+puts '- Setting local hostname...'
+
+File.open('/etc/hostname', 'w') do |f|
+  f.write(hostname)
+end
+
+Kernel.system('hostname -F /etc/hostname')
+
+puts '- Re-obtaining DHCP lease...'
+
+<% if (@operatingsystem == 'CentOS') or (@operatingsystem == 'Scientific') -%>
+  <% if @operatingsystemmajrelease == '7' -%>
+    File.open('/var/lib/NetworkManager/dhclient-ens32.conf', 'a') do |f|
+      f << "send host-name #{hostname}"
+    end
+    Kernel.system('/sbin/service NetworkManager restart')
+    Kernel.system('/usr/bin/nmcli con down id ens32')
+    Kernel.system('/usr/bin/nmcli con up id ens32')
+  <% end -%>
+  <% if @operatingsystemmajrelease == '6' -%>
+    File.open('/etc/dhcp/dhclient-eth0.conf', 'a') do |f|
+  <% end -%>
+  <% if @operatingsystemmajrelease == '5' -%>
+    File.open('/etc/dhclient-eth0.conf', 'a') do |f|
+  <% end -%>
+  <% if (@operatingsystemmajrelease == '6') or (@operatingsystemmajrelease == '5') -%>
+      f << "\nsend host-name #{hostname};"
+    end
+    network = File.read('/etc/sysconfig/network')
+    File.open('/etc/sysconfig/network', 'w') do |f|
+      network.gsub!(/localhost.localdomain/, "#{hostname}")
+      f.write(network)
+    end
+    Kernel.system('/etc/init.d/network restart')
+  <% end -%>
+<% end -%>
+
+<% if @operatingsystem == 'Fedora' -%>
+  File.open('/var/lib/NetworkManager/dhclient-ens32.conf', 'a') do |f|
+    f << "send host-name #{hostname}"
+  end
+  Kernel.system('/sbin/service NetworkManager restart')
+  Kernel.system('/usr/bin/nmcli con down id ens32')
+  Kernel.system('/usr/bin/nmcli con up id ens32')
+<% end -%>
+
+puts '- Cleaning up...'
+
+Kernel.system('rm /etc/vsphere-bootstrap.rb')
+Kernel.system('echo "exit 0" > /etc/rc.d/rc.local')
+
+puts "\n"
+
+puts 'Done!'
+

@@ -1,0 +1,13 @@
+---
+classes:
+  - bsl_bootstrap::puppetmaster::prepare
+  - bsl_bootstrap::puppetmaster::setup
+#  - summon
+
+bsl_bootstrap::puppetmaster::config::manage_hiera: 'true'
+bsl_bootstrap::puppetmaster::config::manage_puppetdb: 'true'
+bsl_bootstrap::puppetmaster::config::manage_hostname: 'true'
+bsl_bootstrap::puppetmaster::config::manage_puppetboard: 'false'
+bsl_bootstrap::puppetmaster::config::manage_r10k: 'true'
+bsl_bootstrap::puppetmaster::config::r10k_init_deploy_enabled: 'true'
+bsl_bootstrap::puppetmaster::config::r10k_manage_webhooks: 'false'
