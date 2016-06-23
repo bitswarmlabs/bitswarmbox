@@ -1,5 +1,5 @@
-class packer::ec2::cloudinit {
-  include '::packer::ec2'
+class packer::aws::cloudinit {
+  include '::packer::aws'
 
   $distro = $::operatingsystem ? {
     /(RedHat|CentOS|Fedora|Scientific|SL|SLC|Ascendos|CloudLinux|PSBM|OracleLinux|OVS|OEL|Amazon|XenServer)/ => 'redhat',

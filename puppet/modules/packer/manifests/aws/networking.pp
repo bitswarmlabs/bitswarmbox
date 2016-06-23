@@ -1,4 +1,4 @@
-class packer::ec2::networking inherits packer::ec2::networking::params {
+class packer::aws::networking inherits packer::aws::networking::params {
   if ( $udev_rule != undef ) {
     file { $udev_rule:
       ensure => absent,

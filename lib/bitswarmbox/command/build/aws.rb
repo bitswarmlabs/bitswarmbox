@@ -25,6 +25,7 @@ module BitswarmBox
               ['--chef', 'Install basic Chef client'],
               ['--ansible', 'Install basic Ansible client'],
               ['--scripts', 'Extra scripts to apply to the box (comma delimited paths)'],
+              ['--bootstrap', 'Execute bootstrap provisioning during build (Puppet apply etc)']
           ].concat(super)
         end
 
@@ -57,13 +58,15 @@ module BitswarmBox
           scripts = argv.option('scripts') || ''
           @build[:scripts] = scripts.split(',')
 
+          @build[:bootstrap] = argv.flag?('bootstrap')
+
           super
         end
 
         def validate!
           super
 
-          %w(name provider template aws_access_key aws_secret_key aws_region aws_source_ami).each do |key|
+          %w(name provider template).each do |key|
             help! "A #{key} is required!" if @build[key.to_sym].nil?
           end
 

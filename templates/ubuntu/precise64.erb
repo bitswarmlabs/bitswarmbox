@@ -60,7 +60,7 @@
             ],
             "execute_command": "<%= @shell_exec_cmd %>"
         },
-    <%- if @puppetserver -%>
+    <%- if @bootstrap -%>
         {
             "type": "file",
             "source": "puppet/hieradata",
@@ -72,12 +72,19 @@
             "destination": "/tmp/Puppetfile"
         },
         {
-            "type": "shell",
-            "scripts": [
-                "scripts/puppetserver-preload.sh"
+            "type": "puppet-masterless",
+            "facter": {
+                "provisioner": "{{user `provisioner`}}",
+                "app_project": "{{user `project`}}",
+                "app_creator": "{{user `created_by`}}",
+                "app_version": "{{user `version`}}"
+            },
+            "manifest_file": "puppet/environments/<%= @provisioner %>/manifests/r10k_bootstrap.pp",
+            "extra_arguments": [
+                "--show_diff --verbose"
             ],
-            "execute_command": "<%= @shell_exec_cmd %>"
-    },
+            "hiera_config_path": "puppet/hiera.yaml"
+        },
         {
             "type": "puppet-masterless",
             "facter": {
@@ -95,8 +102,10 @@
                 "--show_diff --verbose"
             ],
             "hiera_config_path": "puppet/hiera.yaml",
-            "execute_command": "cd {{.WorkingDir}} && {{.FacterVars}}{{if .Sudo}} sudo -E {{end}}puppet apply --verbose --modulepath='{{.ModulePath}}:/etc/puppetlabs/code/modules' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}"
+            "execute_command": "cd {{.WorkingDir}} && {{.FacterVars}}{{if .Sudo}} sudo -E {{end}}puppet apply --verbose --modulepath='{{.ModulePath}}:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}"
         },
+    <%- end -%>
+    <%- if @puppetserver -%>
         {
             "type": "shell",
             "scripts": [
@@ -108,10 +117,8 @@
         {
             "type": "shell",
             "scripts": [
-            <%- if @provisioner == "aws" %>
-                "scripts/cleanup-ec2.sh",
-            <%- end -%>
-                "scripts/purge.sh"
+                "scripts/cleanup.sh",
+                "scripts/cleanup-<%= @provisioner %>.sh"
             ],
             "execute_command": "<%= @shell_exec_cmd %>"
         }
@@ -196,4 +203,3 @@
     <%- end -%>
     ]
 }
-

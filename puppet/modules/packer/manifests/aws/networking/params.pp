@@ -1,4 +1,4 @@
-class packer::ec2::networking::params {
+class packer::aws::networking::params {
 
   case $::osfamily {
     debian: {

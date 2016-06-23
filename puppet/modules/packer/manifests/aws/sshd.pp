@@ -1,4 +1,4 @@
-class packer::ec2::sshd {
+class packer::aws::sshd {
 
   class { 'ssh::server':
     storeconfigs_enabled => false,

@@ -5,7 +5,7 @@ module BitswarmBox
 
     attr_accessor :name, :description
     attr_accessor :template, :scripts, :provider, :provisioner, :packer_shell_exec_cmd
-    attr_accessor :puppet, :puppetserver, :ansible, :chef, :docker
+    attr_accessor :puppet, :puppetserver, :ansible, :chef, :docker, :bootstrap
     attr_accessor :app_creator, :app_project, :app_version
     attr_accessor :aws_access_key, :aws_secret_key, :aws_region, :aws_source_ami, :aws_user_data
 
@@ -16,6 +16,7 @@ module BitswarmBox
     # @param template [String] the name of the template.
     # @param scripts [Array] scripts to include in the build.
     def initialize(env, args) # rubocop:disable Metrics/MethodLength
+      @environment = env
       @provisioner = args[:provisioner] || fail(MissingArgumentError,
                                           'The provisioner must be specified.')
       @packer_shell_exec_cmd = args[:packer_shell_exec_cmd] || 'chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}'
@@ -44,23 +45,21 @@ module BitswarmBox
       @app_version = args[:app_version] || BitswarmBox::VERSION
 
       if @provisioner == 'aws'
-        @aws_access_key = args[:aws_access_key] || fail(MissingArgumentError,
-                                                                                 'aws_access_key must be specified.')
-        @aws_secret_key = args[:aws_secret_key] || fail(MissingArgumentError,
-                                                                                'aws_secret_key must be specified.')
-        @aws_region = args[:aws_region] || fail(MissingArgumentError,
-                                                                            'aws_region must be specified.')
-
-        @aws_source_ami = args[:aws_source_ami] || fail(MissingArgumentError,
-                                                 'source_ami must be specified.')
+        @aws_access_key = args[:aws_access_key]
+        @aws_secret_key = args[:aws_secret_key]
+        @aws_region = args[:aws_region]
+        @aws_source_ami = args[:aws_source_ami]
         @aws_user_data = args[:aws_user_data]
       end
+
+      @bootstrap = args[:bootstrap]
     end
 
     # Run the build.
     def run # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       original_directory = FileUtils.pwd
       box_name = ''
+      ami = ''
 
       # render the template
       if provisioner == 'aws'
@@ -75,6 +74,7 @@ module BitswarmBox
                                             chef: chef,
                                             ansible: ansible,
                                             docker: docker,
+                                            bootstrap: bootstrap,
                                             app_creator: app_creator,
                                             app_project: app_project,
                                             app_version: app_version,
@@ -95,6 +95,7 @@ module BitswarmBox
                                             chef: chef,
                                             ansible: ansible,
                                             docker: docker,
+                                            bootstrap: bootstrap,
                                             app_creator: app_creator,
                                             app_project: app_project,
                                             app_version: app_version,
@@ -143,7 +144,7 @@ module BitswarmBox
           box_name = stdout.gsub(/[a-zA-Z0-9:\.\-_]*?\.box/).first
         end
 
-        if @provisioer == 'aws' && stdout =~ /ami\-[a-f0-9]+/
+        if @provisioner == 'aws' && stdout =~ /ami\-[a-f0-9]+/
           ami = stdout.gsub(/ami\-[a-f0-9]+/).first
         end
       end
@@ -160,6 +161,10 @@ module BitswarmBox
         fail BuildRunError,
              'The build didn\'t complete successfully. Check the logs.'
       end
+    end
+
+    def finalize
+      @environment.sync_ssh_keys(true)
     end
 
     # Clean any temporary files used during building.
