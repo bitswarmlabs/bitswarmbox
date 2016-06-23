@@ -1,26 +1,18 @@
-# postinstall.sh based upon Mitchell's old basebox example
+#!/bin/bash
+export LC_ALL=C
+export DEBIAN_FRONTEND=noninteractive
+minimal_apt_get_install='apt-get install -y --no-install-recommends'
+
+# vagrant.sh aka Mitchell's old basebox postinstall.sh example
+set -e
 
 # mark the build time
 date > /etc/vagrant_box_build_time
 
-# update the apt cache and packages
-case $(lsb_release -cs) in
-    'precise')
-        apt-get clean
-        rm -rf /var/lib/apt/lists/*
-        apt-get clean
-    ;;
-    *)
-    ;;
-esac
-
-apt-get -qy update
-apt-get -qy upgrade
-
 # install some oft used packages
-apt-get -qy install linux-headers-$(uname -r) build-essential
-apt-get -qy install zlib1g-dev libssl-dev
-apt-get -qy install python-software-properties python-setuptools python-dev
+$minimal_apt_get_install linux-headers-$(uname -r) build-essential
+$minimal_apt_get_install zlib1g-dev libssl-dev
+$minimal_apt_get_install python-software-properties python-setuptools python-dev
 
 # configure password-less sudo
 usermod -a -G sudo vagrant
@@ -48,4 +40,3 @@ esac
 # clean up any artifacts
 rm -f /home/vagrant/shutdown.sh
 
-exit

@@ -1,4 +1,6 @@
 #!/bin/bash
+export LC_ALL=C
+export DEBIAN_FRONTEND=noninteractive
 
 ##
 # Purge unnecessary data from the image to keep it small.
@@ -12,11 +14,11 @@ rm /var/lib/dhcp/*
 
 # make sure Udev doesn't block our network
 # http://6.ptmc.org/?p=164
-echo "Cleaning up udev..."
-rm /etc/udev/rules.d/70-persistent-net.rules
-mkdir /etc/udev/rules.d/70-persistent-net.rules
-rm -rf /dev/.udev/
-rm /lib/udev/rules.d/75-persistent-net-generator.rules
+#echo "Cleaning up udev..."
+#rm /etc/udev/rules.d/70-persistent-net.rules
+#mkdir /etc/udev/rules.d/70-persistent-net.rules
+#rm -rf /dev/.udev/
+#rm /lib/udev/rules.d/75-persistent-net-generator.rules
 
 # clean up apt
 echo "Cleaning up apt..."

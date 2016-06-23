@@ -1,0 +1,13 @@
+---
+classes:
+  - packer::updates
+  #- packer::clock
+  - bsl_puppet
+
+puppetmaster: 'puppet'
+
+python::virtualenv: 'present'
+python::pip: 'present'
+python::dev: 'present'
+apache::default_vhost: false
+apache::purge_vhost_dir: true

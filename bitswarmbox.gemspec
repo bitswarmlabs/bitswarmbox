@@ -6,6 +6,7 @@ require 'bitswarmbox/version'
 Gem::Specification.new do |spec|
   spec.name          = 'bitswarmbox'
   spec.version       = BitswarmBox::VERSION
+  spec.executables   << 'bitswarmbox'
   spec.authors       = ['Bitswarm Labs']
   spec.email         = ['ops@bitswarm.io']
 
@@ -18,7 +19,7 @@ Gem::Specification.new do |spec|
     combine as you need. There are also a set of pre-build boxes which are
     regenerated regularly.'
   EOF
-  spec.homepage      = 'https://github.com/bitswarmlabs/packer-bitswarm-boxes'
+  spec.homepage      = 'https://github.com/bitswarmlabs/bitswarmbox'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($RS)
@@ -37,6 +38,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'aruba', '~> 0.8'
   spec.add_development_dependency 'fakefs', '~> 0.6'
   spec.add_development_dependency 'pry'
+
+  spec.add_development_dependency 'ruby-debug-ide', '0.4.24'
+  spec.add_development_dependency 'debase', '0.2.1'
+
 end
 
 

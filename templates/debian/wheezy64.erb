@@ -1,9 +1,24 @@
 {
+    "variables": {
+        "created_by": "bitswarmlabs",
+        "project": "<%= @app_project %>",
+        "version": "<%= @app_version %>",
+        <%- if @provider == "aws-ec2" -%>
+        "ami_name": "<%= @name %>-<%= @version %>-{{timestamp}}",
+        "ami_description": "<%= @description %> <%= @version %> {{timestamp}}",
+        "aws_access_key": "<%= @aws_access_key_id %>",
+        "aws_secret_key": "<%= @aws_secret_access_key %>",
+        "aws_region": "<%= @aws_region %>",
+        "source_ami": "<%= @aws_source_ami %>",
+        <%- end -%>
+        "provisioner": "<%= @provisioner %>"
+    },
+
     "provisioners": [
         {
             "type": "shell",
             "scripts": [
-                "scripts/postinstall.sh",
+                "scripts/prepare.sh",
                 "scripts/vmtools.sh",
                 <%- @scripts.each do |script| -%>
                 "scripts/<%= script %>",

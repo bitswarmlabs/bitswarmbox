@@ -5,8 +5,12 @@ module BitswarmBox
     DEFAULTS = {
       environment_vars: [
         { 'PACKER_CACHE_DIR' => (
-            Pathname.new(ENV['BOXES_HOME_DIR'] || '~/.boxes'
-                        ).expand_path + 'packer_cache') }
+            Pathname.new(ENV['BOXES_HOME_DIR'] || '~/.bitswarmbox'
+                        ).expand_path + 'packer_cache')
+        },
+        { 'AWS_ACCESS_KEY_ID' => ENV['AWS_ACCESS_KEY_ID'] },
+        { 'AWS_SECRET_ACCESS_KEY' => ENV['AWS_SECRET_ACCESS_KEY'] },
+        { 'AWS_DEFAULT_REGION' => ENV['AWS_DEFAULT_REGION'] },
       ],
       template_paths: [
         # the gem install directory
@@ -15,26 +19,36 @@ module BitswarmBox
       script_paths: [
         # the gem install directory
         File.expand_path('../../../scripts', __FILE__)
+      ],
+      puppet_lib_paths: [
+        # the gem install directory
+        File.expand_path('../../../puppet', __FILE__)
+      ],
+      ssh_key_paths: [
+        # the gem install directory
+        File.expand_path('../../../keys', __FILE__)
       ]
     }
 
-    # The directory which boxes works out of.
+    # The directory which bitswarmbox works out of.
     def home_dir
       @home_dir ||= Pathname.new(
-        ENV['BOXES_HOME_DIR'] || '~/.boxes').expand_path
+        ENV['BOXES_HOME_DIR'] || '~/.bitswarmbox').expand_path
     end
 
-    # The directory inside the `home_dir` which boxes runs builds inside of.
+    # The directory inside the `home_dir` which bitswarmbox runs builds inside of.
     def working_dir
       @working_dir ||= Pathname.new(
         ENV['BOXES_WORKING_DIR'] || home_dir + 'tmp').expand_path
     end
 
-    # Paths known to boxes for discovering templates.
+    # Paths known to bitswarmbox for discovering templates.
     attr_accessor :template_paths
 
-    # Paths known to boxes for discovering scripts.
+    # Paths known to bitswarmbox for discovering scripts.
     attr_accessor :script_paths
+
+    attr_accessor :puppet_lib_paths, :ssh_key_paths
 
     # A Hash of environment variables BitswarmBox sets in the run environment.
     attr_accessor :environment_vars

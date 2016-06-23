@@ -12,348 +12,37 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
     </content>
-    <orderEntry type="jdk" jdkName="RVM: ruby-2.3.0" jdkType="RUBY_SDK" />
+    <orderEntry type="jdk" jdkName="RVM: ruby-2.1.1" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="aruba (vbundled(0.14.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/config" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/script" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/features" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/fixtures" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/templates" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/config" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/script" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/features" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/fixtures" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/aruba-0.14.1/templates" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="builder (vbundled(3.2.2), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/builder-3.2.2) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/builder-3.2.2/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/builder-3.2.2/rakelib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/builder-3.2.2/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/builder-3.2.2/rakelib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="childprocess (vbundled(0.5.9), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/childprocess-0.5.9) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/childprocess-0.5.9/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/childprocess-0.5.9/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="claide (vbundled(0.9.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/claide-0.9.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/claide-0.9.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/claide-0.9.1/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="coderay (vbundled(1.1.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/coderay-1.1.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/coderay-1.1.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/coderay-1.1.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/coderay-1.1.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/coderay-1.1.1/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="colored (vbundled(1.2), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/colored-1.2) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/colored-1.2/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/colored-1.2/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="contracts (vbundled(0.14.0), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0/script" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0/features" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0/benchmarks" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0/script" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0/features" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/contracts-0.14.0/benchmarks" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="cucumber (vbundled(2.4.0), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/.github" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/features" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/gem_tasks" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/.github" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/features" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-2.4.0/gem_tasks" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="cucumber-core (vbundled(1.5.0), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/cucumber-core-1.5.0) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-core-1.5.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-core-1.5.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="cucumber-wire (vbundled(0.0.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/cucumber-wire-0.0.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-wire-0.0.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-wire-0.0.1/features" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-wire-0.0.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/cucumber-wire-0.0.1/features" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="diff-lcs (vbundled(1.2.5), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/diff-lcs-1.2.5) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/diff-lcs-1.2.5/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/diff-lcs-1.2.5/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/diff-lcs-1.2.5/autotest" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/diff-lcs-1.2.5/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/diff-lcs-1.2.5/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/diff-lcs-1.2.5/autotest" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="fakefs (vbundled(0.8.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/fakefs-0.8.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/fakefs-0.8.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/fakefs-0.8.1/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="ffi (vbundled(1.9.10), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10/gen" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10/libtest" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10/gen" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/ffi-1.9.10/libtest" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="gherkin (vbundled(4.0.0), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/gherkin-4.0.0) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/gherkin-4.0.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/gherkin-4.0.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/gherkin-4.0.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/gherkin-4.0.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="method_source (vbundled(0.8.2), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/method_source-0.8.2) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/method_source-0.8.2/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/method_source-0.8.2/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="multi_json (vbundled(1.12.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/multi_json-1.12.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/multi_json-1.12.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/multi_json-1.12.1/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="multi_test (vbundled(0.1.2), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/multi_test-0.1.2) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/multi_test-0.1.2/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/multi_test-0.1.2/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="pry (vbundled(0.10.3), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/pry-0.10.3) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/pry-0.10.3/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/pry-0.10.3/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/pry-0.10.3/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/pry-0.10.3/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="rake (vbundled(10.5.0), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/rake-10.5.0) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rake-10.5.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rake-10.5.0/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rake-10.5.0/rakelib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rake-10.5.0/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rake-10.5.0/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rake-10.5.0/rakelib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="rspec (vbundled(3.4.0), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/rspec-3.4.0) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-3.4.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-3.4.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="rspec-core (vbundled(3.4.4), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/rspec-core-3.4.4) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-core-3.4.4/exe" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-core-3.4.4/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-core-3.4.4/exe" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-core-3.4.4/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="rspec-expectations (vbundled(3.4.0), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/rspec-expectations-3.4.0) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-expectations-3.4.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-expectations-3.4.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="rspec-mocks (vbundled(3.4.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/rspec-mocks-3.4.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-mocks-3.4.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-mocks-3.4.1/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="rspec-support (vbundled(3.4.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/rspec-support-3.4.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-support-3.4.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/rspec-support-3.4.1/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="slop (vbundled(3.6.0), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/slop-3.6.0) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/slop-3.6.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/slop-3.6.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="thor (vbundled(0.19.1), /Users/ravery/bitswarmlabs/packer/bitswarmbox/vendor/bundle/ruby/2.3.0/gems/thor-0.19.1) [path][gem]">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/thor-0.19.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/thor-0.19.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/thor-0.19.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.3.0/gems/thor-0.19.1/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.12.5, RVM: ruby-2.3.0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aruba (v0.14.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.12.5, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.5.9, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="claide (v0.9.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="colored (v1.2, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="contracts (v0.14.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cucumber (v2.4.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cucumber-core (v1.5.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cucumber-wire (v0.0.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="debase (v0.2.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="debase-ruby_core_source (v0.9.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fakefs (v0.8.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.10, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="gherkin (v4.0.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="method_source (v0.8.2, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.12.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_test (v0.1.2, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pry (v0.10.3, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v10.5.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.4.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.4.4, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.4.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.4.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.4.1, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-debug-ide (v0.4.24, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="slop (v3.6.0, RVM: ruby-2.1.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="thor (v0.19.1, RVM: ruby-2.1.1) [gem]" level="application" />
   </component>
 </module>

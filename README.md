@@ -1,18 +1,7 @@
-# Bitswarm Packer Templates - Usage
+# BitswarmBox - Packer Convenience Wrapper for building Bitswarm.io
 
 [Packer](http://packer.io) templates for provisioning host operating system environments for the
 [Bitswarm](http://bitswarm.io) ecosystem.
-
-## Files and Directories
-
-- `./templates` - Packer json templates
-- `./keys` - persistent ssh keys to be preloaded into builds
-- `./puppet` - the Puppet manifests to be used during provisioning
-    - `./puppet/manifests/` - Entry points for Puppet provisioning
-    - `./puppet/manifests/modules/bitswarm/` - our custom modules here
-    - `./puppet/manifests/modules/contrib/` - community contrib modules here (also reflected inside `Puppetfile`)
-    - `./puppet/hieradata/` - hiera files, create a `local.yaml` to add a customization layer.
-- `./scripts` - shared shell scripts
 
 ## Packer Templates:
 
@@ -40,21 +29,21 @@ ability to interact with the Github API on the repos to install deployment keys.
 ## Installation & Requirements
 
 ```shell
-[sudo] gem install boxes
+[sudo] gem install bitswarmbox
 ```
 
-boxes leans on [Packer][] and [VirtualBox][], [VMware Fusion][fusion] or
+bitswarmbox leans on [Packer][] and [VirtualBox][], [VMware Fusion][fusion] or
 [VMware Workstation][workstation] for building boxes and these will need to
 available in your `$PATH`.
 
 ## Example Usage
 
-boxes is driven by the `boxes` command line tool, and works with artifacts
+bitswarmbox is driven by the `bitswarmbox` command line tool, and works with artifacts
 inside it's own working directory. You need to specify a name for the build,
 a template to work with and the output provider. Something like so:
 
 ```shell
-boxes build \
+bitswarmbox build \
   --name=trusty64-empty \
   --template=ubuntu/trusty64 \
   --provider=vmware
@@ -62,7 +51,7 @@ boxes build \
 
 This will build a file called `trusty64-empty.box` in the current directory.
 
-There's lots more to `boxes` than building simple empty Vagrant boxes like
+There's lots more to `bitswarmbox` than building simple empty Vagrant boxes like
 this, which can be see in the inline help.
 
 ## Acknowledgements

@@ -1,4 +1,6 @@
 #!/bin/bash
+export LC_ALL=C
+export DEBIAN_FRONTEND=noninteractive
 
 # Get the Chef package version through their metadata service.
 platform=$(lsb_release -si | tr '[:upper:]' '[:lower:]')

@@ -46,16 +46,11 @@ crashlytics-build.properties
 fabric.properties
 
 # Rake and Packer generated cruft
-/.bundle/
-/.yardoc
-/Gemfile.lock
-/_yardoc/
-/coverage/
-/doc/
-/pkg/
-/spec/reports/
-/tmp/
-/vendor/
+Gemfile.lock
+pkg/
+spec/reports/
+tmp/
+vendor/
 
 # Preloaded SSH keys
 keys/
@@ -73,5 +68,3 @@ output-*
 
 # Vagrant
 .vagrant/
-
-json/

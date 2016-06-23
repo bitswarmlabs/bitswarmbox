@@ -1,20 +1,147 @@
 {
+    "variables": {
+        "name": "<%= @name || '{{ .Name }}' %>",
+        "created_by": "<%= @app_creator || ENV['USER'] %>",
+        "project": "<%= @app_project %>",
+        "version": "<%= @app_version %>",
+    <%- if @provisioner == "aws" -%>
+        "ami_name": "<%= @name %>-<%= @app_version %>-{{isotime \"200601021504\"}}",
+        "ami_description": "<%= @description %> <%= @app_version %> {{isotime \"2006-01-02@15:04\"}}",
+        "aws_access_key": "<%= @aws_access_key %>",
+        "aws_secret_key": "<%= @aws_secret_key %>",
+        "aws_region": "<%= @aws_region %>",
+        "source_ami": "<%= @aws_source_ami %>",
+        "user_data": "<%= @aws_user_data %>",
+    <%- end -%>
+        "provisioner": "<%= @provisioner %>"
+    },
+
     "provisioners": [
+    <%- if @puppetserver -%>
+        {
+            "type": "shell-local",
+            "command": "scripts/local-ssh-keygen.sh"
+        },
+        {
+            "type": "file",
+            "source": "keys",
+            "destination": "/tmp"
+        },
+    <%- end -%>
+        {
+            "type": "shell",
+            "environment_vars": [
+              "PACKER_PROVISIONER=<%= @provisioner %>"
+            ],
+            "scripts": [
+                "scripts/prepare.sh",
+            <%- if @provisioner == "vagrant" -%>
+                "scripts/vagrant.sh",
+                "scripts/vmtools.sh",
+            <%- end -%>
+            <%- if @puppetserver -%>
+                "scripts/puppetserver.sh",
+            <%- elsif @puppet -%>
+                "scripts/puppet.sh",
+            <%- end -%>
+            <%- if @chef -%>
+                "scripts/chef.sh",
+            <%- end -%>
+            <%- if @ansible -%>
+                "scripts/ansible.sh",
+            <%- end -%>
+            <%- if @docker -%>
+                "scripts/docker.sh",
+            <%- end -%>
+            <%- @scripts.each do |script| -%>
+                "scripts/<%= script %>",
+            <%- end -%>
+                "scripts/prepare-done.sh"
+            ],
+            "execute_command": "<%= @shell_exec_cmd %>"
+        },
+    <%- if @puppetserver -%>
+        {
+            "type": "file",
+            "source": "puppet/hieradata",
+            "destination": "/tmp"
+        },
+        {
+            "type": "file",
+            "source": "puppet/Puppetfile",
+            "destination": "/tmp/Puppetfile"
+        },
         {
             "type": "shell",
             "scripts": [
-                "scripts/postinstall.sh",
-                "scripts/vmtools.sh",
-                <%- @scripts.each do |script| -%>
-                "scripts/<%= script %>",
-                <%- end -%>
+                "scripts/puppetserver-preload.sh"
+            ],
+            "execute_command": "<%= @shell_exec_cmd %>"
+    },
+        {
+            "type": "puppet-masterless",
+            "facter": {
+                "provisioner": "{{user `provisioner`}}",
+                "puppetversion": "4.0",
+                "app_project": "{{user `project`}}",
+                "app_creator": "{{user `created_by`}}",
+                "app_version": "{{user `version`}}"
+            },
+            "manifest_file": "puppet/environments/<%= @provisioner %>/manifests/base.pp",
+            "module_paths": [
+                "puppet/modules"
+            ],
+            "extra_arguments": [
+                "--show_diff --verbose"
+            ],
+            "hiera_config_path": "puppet/hiera.yaml",
+            "execute_command": "cd {{.WorkingDir}} && {{.FacterVars}}{{if .Sudo}} sudo -E {{end}}puppet apply --verbose --modulepath='{{.ModulePath}}:/etc/puppetlabs/code/modules' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/puppetserver-post.sh"
+            ],
+            "execute_command": "<%= @shell_exec_cmd %>"
+        },
+    <%- end -%>
+        {
+            "type": "shell",
+            "scripts": [
+            <%- if @provisioner == "aws" %>
+                "scripts/cleanup-ec2.sh",
+            <%- end -%>
                 "scripts/purge.sh"
             ],
-            "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+            "execute_command": "<%= @shell_exec_cmd %>"
         }
     ],
 
     "builders": [
+    <%- if @provisioner == "aws" -%>
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `aws_region`}}",
+            "source_ami": "{{user `source_ami`}}",
+            "instance_type": "t2.small",
+            "ssh_username": "ubuntu",
+            "ami_description": "{{user `ami_description`}}",
+            "ami_name": "{{user `ami_name`}}",
+            "ssh_timeout": "10000s",
+            "ssh_pty": "true",
+            "user_data": "{{user `user_data`}}",
+            "run_tags": {
+                "created_by": "{{user `created_by`}}",
+                "project": "{{user `project`}}"
+            },
+            "tags": {
+                "created_by": "{{user `created_by`}}",
+                "project": "{{user `project`}}"
+            }
+        }
+    <%- elsif @provisioner == "vagrant" -%>
         {
             "name": "<%= @name %>",
             "type": "<%= @provider %>-iso",
@@ -48,13 +175,25 @@
                 "initrd=/install/initrd.gz -- <enter>"
             ],
 
+        <%- if @provider == "virtualbox" -%>
+            "vboxmanage": [
+                [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+                [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+            ],
+        <%- end -%>
+
             "shutdown_command": "echo 'shutdown -P now' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'"
         }
+      <%- end -%>
     ],
 
     "post-processors": [
+    <%- if @provisioner == "vagrant" -%>
         {
-            "type": "vagrant"
+            "type": "vagrant",
+            "output": "<%= @name || '{{build_name}}' %>_<%= @app_version %>-{{isotime \"200601021504\"}}.box"
         }
+    <%- end -%>
     ]
 }
+
