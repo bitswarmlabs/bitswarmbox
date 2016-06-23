@@ -87,7 +87,7 @@
                 "app_creator": "{{user `created_by`}}",
                 "app_version": "{{user `version`}}"
             },
-            "manifest_file": "puppet/manifests/base.pp",
+            "manifest_file": "puppet/environments/<%= @provisioner %>/manifests/base.pp",
             "module_paths": [
                 "puppet/modules"
             ],
