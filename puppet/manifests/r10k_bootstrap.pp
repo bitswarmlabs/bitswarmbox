@@ -1,6 +1,8 @@
 class r10k_bootstrap(
   $project = "${::app_project}",
 ) {
+  notify { "## Bootstrapping r10k and local Puppet module library": }
+
   package { 'r10k':
     provider => puppet_gem,
     ensure   => installed

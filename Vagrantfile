@@ -78,8 +78,10 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: "cp -f /vagrant/puppet/Puppetfile /tmp/"
   # config.vm.provision "shell", path: "scripts/puppetserver-preload.sh"
+
   config.vm.provision "puppet" do |puppet|
-    puppet.manifest = "puppet/environments/vagrant/manifests/r10k_bootstrap.pp"
+    puppet.manifest_file = "r10k_bootstrap.pp"
+    puppet.manifests_path = "puppet/manifests"
     puppet.environment = "vagrant"
     puppet.environment_path = "puppet/environments"
     puppet.hiera_config_path = "puppet/hiera.yaml"

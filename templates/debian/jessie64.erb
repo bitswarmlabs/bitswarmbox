@@ -79,7 +79,7 @@
                 "app_creator": "{{user `created_by`}}",
                 "app_version": "{{user `version`}}"
             },
-            "manifest_file": "puppet/environments/<%= @provisioner %>/manifests/r10k_bootstrap.pp",
+            "manifest_file": "puppet/manifests/r10k_bootstrap.pp",
             "extra_arguments": [
                 "--show_diff --verbose"
             ],
@@ -132,7 +132,7 @@
             "secret_key": "{{user `aws_secret_key`}}",
             "region": "{{user `aws_region`}}",
             "source_ami": "{{user `source_ami`}}",
-            "instance_type": "t2.small",
+            "instance_type": "c4.large",
             "ssh_username": "admin",
             "ami_description": "{{user `ami_description`}}",
             "ami_name": "{{user `ami_name`}}",
