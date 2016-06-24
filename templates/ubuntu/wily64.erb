@@ -72,15 +72,18 @@
             "destination": "/tmp/Puppetfile"
         },
         {
-            "type": "shell",
-            "scripts": [
-        <%- if @puppetserver -%>
-                "scripts/puppetserver-preload.sh"
-        <%- else -%>
-                "scripts/puppet-preload.sh"
-        <%- end -%>
+            "type": "puppet-masterless",
+            "facter": {
+                "provisioner": "{{user `provisioner`}}",
+                "app_project": "{{user `project`}}",
+                "app_creator": "{{user `created_by`}}",
+                "app_version": "{{user `version`}}"
+            },
+            "manifest_file": "puppet/environments/<%= @provisioner %>/manifests/r10k_bootstrap.pp",
+            "extra_arguments": [
+                "--show_diff --verbose"
             ],
-            "execute_command": "<%= @shell_exec_cmd %>"
+            "hiera_config_path": "puppet/hiera.yaml"
         },
         {
             "type": "puppet-masterless",
@@ -114,10 +117,8 @@
         {
             "type": "shell",
             "scripts": [
-            <%- if @provisioner == "aws" %>
-                "scripts/cleanup-ec2.sh",
-            <%- end -%>
-                "scripts/purge.sh"
+                "scripts/cleanup.sh",
+                "scripts/cleanup-<%= @provisioner %>.sh"
             ],
             "execute_command": "<%= @shell_exec_cmd %>"
         }

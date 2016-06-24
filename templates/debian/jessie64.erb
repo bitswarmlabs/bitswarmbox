@@ -117,10 +117,8 @@
         {
             "type": "shell",
             "scripts": [
-            <%- if @provisioner == "aws" %>
-                "scripts/cleanup-ec2.sh",
-            <%- end -%>
-                "scripts/purge.sh"
+                "scripts/cleanup.sh",
+                "scripts/cleanup-<%= @provisioner %>.sh"
             ],
             "execute_command": "<%= @shell_exec_cmd %>"
         }
