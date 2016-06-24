@@ -14,7 +14,8 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   #config.vm.box = "ubuntu-xenial64-base"
   #config.vm.box = "ubuntu-trusty64-puppetserver"
-  config.vm.box = "ubuntu-xenial64-puppetserver"
+  #config.vm.box = "ubuntu-xenial64-puppetserver"
+  config.vm.box = "puppetserver-debian-jessie"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -51,7 +52,7 @@ Vagrant.configure(2) do |config|
     #vb.gui = true
 
     # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = "2048"
 
     # Customize the number of CPUs on the VM:
     vb.cpus = 2
@@ -75,8 +76,24 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
 
-  config.vm.provision "shell", inline: "cp -f /vagrant/puppet/Puppetfile /etc/puppetlabs/code/"
-  config.vm.provision "shell", path: "scripts/puppetserver-preload.sh"
+  config.vm.provision "shell", inline: "cp -f /vagrant/puppet/Puppetfile /tmp/"
+  # config.vm.provision "shell", path: "scripts/puppetserver-preload.sh"
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifest = "puppet/environments/vagrant/manifests/r10k_bootstrap.pp"
+    puppet.environment = "vagrant"
+    puppet.environment_path = "puppet/environments"
+    puppet.hiera_config_path = "puppet/hiera.yaml"
+
+    puppet.facter = {
+        "provisioner" => "vagrant",
+        "puppetversion" => "4.0",
+        "app_project" => "puppetmaster",
+    }
+
+    puppet.options = [
+        "--show_diff --verbose"
+    ]
+  end
 
   config.vm.provision "puppet" do |puppet|
     puppet.environment = "vagrant"
@@ -84,7 +101,7 @@ Vagrant.configure(2) do |config|
     puppet.hiera_config_path = "puppet/hiera.yaml"
 
     puppet.facter = {
-        "provisioner" => "aws",
+        "provisioner" => "vagrant",
         "puppetversion" => "4.0",
         "app_project" => "puppetmaster",
     }
