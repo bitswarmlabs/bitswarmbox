@@ -36,3 +36,13 @@ rm -f /home/vagrant/.bash_history
 echo "Cleaning up logs..."
 find /var/log -type f | while read f; do echo -ne '' > $f; done;
 
+if [ -e /etc/puppetlabs/puppet/ssl ]; then
+    echo "Clearing out any generated Puppet SSL certs"
+    set -x
+    rm -rf /etc/puppetlabs/puppet/ssl/*
+fi
+if [ -e /etc/puppetlabs/puppetdb/ssl ]; then
+    echo "Clearing out any generated PuppetDB SSL certs"
+    set -x
+    rm -rf /etc/puppetlabs/puppetdb/ssl/*
+fi

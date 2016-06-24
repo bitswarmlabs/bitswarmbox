@@ -2,7 +2,6 @@
 classes:
   - bsl_bootstrap::puppetmaster::prepare
   - bsl_bootstrap::puppetmaster::setup
-#  - summon
 
 bsl_bootstrap::puppetmaster::config::manage_hiera: 'true'
 bsl_bootstrap::puppetmaster::config::manage_puppetdb: 'true'
