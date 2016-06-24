@@ -1,6 +1,6 @@
-class packer::ec2::users {
-  include '::packer::ec2'
-  $service_acct = $::packer::ec2::local_service_acct_user
+class packer::aws::users {
+  include '::packer::aws'
+  $service_acct = $::packer::aws::local_service_acct_user
 
   if $service_acct != 'ubuntu' {
     user { $service_acct:
@@ -8,12 +8,10 @@ class packer::ec2::users {
       home       => "/home/${service_acct}",
       managehome => true,
     }
-
-    sudo::sudoers { 'sysops':
+    ->
+    sudo::sudoers { $service_acct:
       ensure   => 'present',
       users    => [$service_acct],
-      runas    => ['root'],
-      cmnds    => ['ALL'],
       tags     => ['NOPASSWD'],
       defaults => [ 'env_keep += "SSH_AUTH_SOCK"' ]
     }

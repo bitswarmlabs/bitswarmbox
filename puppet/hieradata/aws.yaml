@@ -1,7 +1,7 @@
 ---
 classes:
-  - packer::ec2
-  - packer::ec2::networking
-  - packer::ec2::users
+  - packer::aws
+  - packer::aws::networking
+  - packer::aws::users
 #  - packer::ec2::cloudinit
 #  - packer::ec2::sshd

@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency 'boxes', '~> 2.3'
   spec.add_dependency 'claide', '~> 0.9'
   spec.add_dependency 'colored', '~> 1.2'
+  spec.add_dependency 'rsync', '1.0.9'
 
   spec.add_development_dependency 'bundler', '~> 1.9'
   spec.add_development_dependency 'rake', '~> 10.4'

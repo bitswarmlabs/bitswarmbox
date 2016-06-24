@@ -1,13 +1,15 @@
+require "rsync"
+
 module BitswarmBox
   # For creating and managing the environment which bitswarmbox uses.
   class Environment
     def initialize
       FileUtils.mkdir_p(BitswarmBox.config.working_dir)
 
-      copy_templates
-      copy_scripts
-      copy_puppet_lib
-      copy_ssh_keys
+      sync_templates
+      sync_scripts
+      sync_puppet
+      sync_ssh_keys
     end
 
     def available_templates
@@ -61,6 +63,20 @@ module BitswarmBox
       end
     end
 
+    def sync_templates
+      BitswarmBox.config.template_paths.each do |template_path|
+        Rsync.run(template_path, BitswarmBox.config.working_dir, ['-av', '--delete']) do |result|
+          if result.success?
+            result.changes.each do |change|
+              puts "#{change.filename} (#{change.summary})"
+            end
+          else
+            fail BuildRunError, result.error
+          end
+        end
+      end
+    end
+
     def copy_scripts
       scripts_dir = BitswarmBox.config.working_dir + 'scripts'
 
@@ -69,6 +85,20 @@ module BitswarmBox
       BitswarmBox.config.script_paths.each do |script_path|
         Dir.glob("#{script_path}/*").each do |src_script|
           FileUtils.cp_r(src_script, scripts_dir)
+        end
+      end
+    end
+
+    def sync_scripts
+      BitswarmBox.config.script_paths.each do |script_path|
+        Rsync.run(script_path, BitswarmBox.config.working_dir, ['-av', '--delete']) do |result|
+          if result.success?
+            result.changes.each do |change|
+              puts "#{change.filename} (#{change.summary})"
+            end
+          else
+            fail BuildRunError, result.error
+          end
         end
       end
     end
@@ -85,6 +115,20 @@ module BitswarmBox
       end
     end
 
+    def sync_puppet
+      BitswarmBox.config.puppet_lib_paths.each do |puppet_path|
+        Rsync.run(puppet_path, BitswarmBox.config.working_dir, ['-av', '--delete']) do |result|
+          if result.success?
+            result.changes.each do |change|
+              puts "#{change.filename} (#{change.summary})"
+            end
+          else
+            fail BuildRunError, result.error
+          end
+        end
+      end
+    end
+
     def copy_ssh_keys
       key_dir = BitswarmBox.config.working_dir + 'keys'
 
@@ -93,6 +137,38 @@ module BitswarmBox
       BitswarmBox.config.ssh_key_paths.each do |key_path|
         Dir.glob("#{key_path}/*").each do |src_keyfile|
           FileUtils.cp_r(src_keyfile, key_dir)
+        end
+      end
+    end
+
+    public
+
+    def sync_ssh_keys(reverse = false)
+      key_dir = BitswarmBox.config.working_dir + 'puppet'
+
+      FileUtils.mkdir_p(key_dir)
+
+      BitswarmBox.config.ssh_key_paths.each do |key_path|
+        if reverse
+          Rsync.run(key_dir, File.expand_path("#{key_path}/.."), ['-av', '--delete']) do |result|
+            if result.success?
+              result.changes.each do |change|
+                puts "#{change.filename} (#{change.summary})"
+              end
+            else
+              fail BuildRunError, result.error
+            end
+          end
+        else
+          Rsync.run(key_path, BitswarmBox.config.working_dir, ['-av', '--delete']) do |result|
+            if result.success?
+              result.changes.each do |change|
+                puts "#{change.filename} (#{change.summary})"
+              end
+            else
+              fail BuildRunError, result.error
+            end
+          end
         end
       end
     end

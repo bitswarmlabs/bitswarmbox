@@ -6,6 +6,8 @@
 :hierarchy:
   - "common"
   - "%{::provisioner}"
+  - "%{::environment}"
+  - "%{::osfamily}"
   - "%{::app_project}"
   - "local"
 :yaml:

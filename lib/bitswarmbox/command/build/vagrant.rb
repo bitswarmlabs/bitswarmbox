@@ -19,6 +19,7 @@ module BitswarmBox
               ['--chef', 'Install basic Chef client'],
               ['--ansible', 'Install basic Ansible client'],
               ['--scripts', 'Extra scripts to apply to the box (comma delimited paths)'],
+              ['--bootstrap', 'Execute bootstrap provisioning during build (Puppet apply etc)']
           ].concat(super)
         end
 
@@ -44,6 +45,8 @@ module BitswarmBox
           scripts = argv.option('scripts') || ''
           @build[:scripts] = scripts.split(',')
 
+          @build[:bootstrap] = argv.flag?('bootstrap')
+
           super
         end
 
@@ -63,6 +66,7 @@ module BitswarmBox
           env = BitswarmBox::Environment.new
           builder = BitswarmBox::Builder.new(env, @build)
           builder.run
+          builder.finalize
           builder.clean
         rescue BitswarmBox::Errors::BuildRunError => e
           puts "[!] #{e}".red
