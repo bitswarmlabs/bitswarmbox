@@ -2,11 +2,11 @@ forge 'http://forge.puppetlabs.com'
 
 mod 'bitswarmlabs/bsl_puppet',
   :git    => 'https://github.com/bitswarmlabs/puppet-bsl_puppet.git',
-  :tag    => '0.5.1'
+  :tag    => '0.5.2'
 
 mod 'bitswarmlabs/bsl_bootstrap',
   :git    => 'https://github.com/bitswarmlabs/puppet-bsl_bootstrap.git',
-  :tag    => '0.5.1'
+  :tag    => '0.5.2'
 
 mod 'puppetlabs/aws',
   :git => 'https://github.com/bitswarmlabs/puppetlabs-aws.git',
