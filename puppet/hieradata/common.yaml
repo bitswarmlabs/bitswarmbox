@@ -2,7 +2,6 @@
 classes:
   - packer::updates
   - packer::clock
-  - bsl_puppet
 
 puppetmaster: 'puppet'
 
