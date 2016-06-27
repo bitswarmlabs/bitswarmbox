@@ -93,7 +93,7 @@ Vagrant.configure(2) do |config|
     }
 
     puppet.options = [
-        "--show_diff --verbose"
+        "--show_diff"
     ]
   end
 

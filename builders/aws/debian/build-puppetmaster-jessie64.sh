@@ -8,4 +8,4 @@ bitswarmbox build aws \
     --description="Bitswarm Puppetmaster bootstrap running Debian Jessie amd64" \
     --aws_region="us-west-1" \
     --aws_source_ami="ami-45374b25" \
-    --puppetserver
+    --puppetserver --bootstrap
