@@ -5,8 +5,5 @@ classes:
 
 puppetmaster: 'puppet'
 
-python::virtualenv: 'present'
-python::pip: 'present'
-python::dev: 'present'
-apache::default_vhost: false
-apache::purge_vhost_dir: true
+hello_worlds:
+  - "hello from Packer's hieradata/common.yaml"
