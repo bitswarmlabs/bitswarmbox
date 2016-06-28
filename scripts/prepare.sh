@@ -30,5 +30,3 @@ mkdir -p /usr/local/sbin
 
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
-
-$minimal_apt_get_install language-pack-en
