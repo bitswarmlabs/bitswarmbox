@@ -53,7 +53,7 @@ module BitswarmBox
 
     def sync_templates
       BitswarmBox.config.template_paths.each do |template_path|
-        Rsync.run(template_path, BitswarmBox.config.working_dir, ['-av']) do |result|
+        Rsync.run(template_path, BitswarmBox.config.working_dir, ['-av', '--delete']) do |result|
           if result.success?
             result.changes.each do |change|
               puts "#{change.filename} (#{change.summary})"
@@ -67,7 +67,7 @@ module BitswarmBox
 
     def sync_scripts
       BitswarmBox.config.script_paths.each do |script_path|
-        Rsync.run(script_path, BitswarmBox.config.working_dir, ['-av']) do |result|
+        Rsync.run(script_path, BitswarmBox.config.working_dir, ['-av', '--delete']) do |result|
           if result.success?
             result.changes.each do |change|
               puts "#{change.filename} (#{change.summary})"
@@ -81,7 +81,7 @@ module BitswarmBox
 
     def sync_puppet
       BitswarmBox.config.puppet_lib_paths.each do |puppet_path|
-        Rsync.run(puppet_path, BitswarmBox.config.working_dir, ['-av']) do |result|
+        Rsync.run(puppet_path, BitswarmBox.config.working_dir, ['-av', '--delete']) do |result|
           if result.success?
             result.changes.each do |change|
               puts "#{change.filename} (#{change.summary})"
@@ -102,7 +102,7 @@ module BitswarmBox
 
       BitswarmBox.config.ssh_key_paths.each do |key_path|
         if reverse
-          Rsync.run(key_dir, File.expand_path("#{key_path}/.."), ['-av']) do |result|
+          Rsync.run(key_dir, File.expand_path("#{key_path}/.."), ['-av', '--delete']) do |result|
             if result.success?
               result.changes.each do |change|
                 puts "#{change.filename} (#{change.summary})"
@@ -112,7 +112,7 @@ module BitswarmBox
             end
           end
         else
-          Rsync.run(key_path, BitswarmBox.config.working_dir, ['-av']) do |result|
+          Rsync.run(key_path, BitswarmBox.config.working_dir, ['-av', '--delete']) do |result|
             if result.success?
               result.changes.each do |change|
                 puts "#{change.filename} (#{change.summary})"
