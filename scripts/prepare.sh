@@ -1,7 +1,7 @@
 #!/bin/bash
 export LC_ALL=C
 export DEBIAN_FRONTEND=noninteractive
-minimal_apt_get_install='apt-get install -y --no-install-recommends'
+minimal_apt_get_install='apt-get install -y'
 
 set -e
 
@@ -30,3 +30,5 @@ mkdir -p /usr/local/sbin
 
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
+
+$minimal_apt_get_install language-pack-en
