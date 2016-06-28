@@ -82,14 +82,14 @@ Vagrant.configure(2) do |config|
   config.vm.provision "puppet" do |puppet|
     puppet.manifest_file = "r10k_bootstrap.pp"
     puppet.manifests_path = "puppet/manifests"
-    puppet.environment = "vagrant"
+    puppet.environment = "production"
     puppet.environment_path = "puppet/environments"
     puppet.hiera_config_path = "puppet/hiera.yaml"
 
     puppet.facter = {
         "provisioner" => "vagrant",
         "puppetversion" => "4.0",
-        "app_project" => "puppetmaster",
+        "app_project" => "bootstrap",
     }
 
     puppet.options = [
