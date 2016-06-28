@@ -102,7 +102,7 @@ module BitswarmBox
 
       BitswarmBox.config.ssh_key_paths.each do |key_path|
         if reverse
-          Rsync.run(key_dir, File.expand_path("#{key_path}/.."), ['-av', '--delete']) do |result|
+          Rsync.run(key_dir, File.expand_path("#{key_path}/.."), ['-av']) do |result|
             if result.success?
               result.changes.each do |change|
                 puts "#{change.filename} (#{change.summary})"
