@@ -96,7 +96,7 @@ module BitswarmBox
     public
 
     def sync_ssh_keys(reverse = false)
-      key_dir = BitswarmBox.config.working_dir + 'puppet'
+      key_dir = BitswarmBox.config.working_dir + 'keys'
 
       FileUtils.mkdir_p(key_dir)
 
