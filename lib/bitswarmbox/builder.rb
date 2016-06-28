@@ -124,13 +124,13 @@ module BitswarmBox
       end
 
       # execute the packer inspect command
-      FileUtils.chdir(BitswarmBox.config.working_dir)
-      cmd = "packer inspect #{build_name}.json"
-      status = Subprocess.run(cmd) do |stdout, stderr, _thread|
-        puts stdout unless stdout.nil?
-        puts stderr unless stderr.nil?
-        fail() unless stderr.nil?
-      end
+      # FileUtils.chdir(BitswarmBox.config.working_dir)
+      # cmd = "packer inspect #{build_name}.json"
+      # status = Subprocess.run(cmd) do |stdout, stderr, _thread|
+      #   puts stdout unless stdout.nil?
+      #   puts stderr unless stderr.nil?
+      #   fail() unless stderr.nil?
+      # end
 
       # execute the packer build command
       FileUtils.chdir(BitswarmBox.config.working_dir)

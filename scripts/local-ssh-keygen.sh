@@ -12,5 +12,5 @@ if [ ! -e "${KEYDIR}/root_rsa" ]; then
   ssh-keygen -t rsa -f "${KEYDIR}/root_rsa" -q -N "" -C "bitswarm_insecure"
 fi
 
-echo "#### root_rsa.pub:"
-cat "${KEYDIR}/root_rsa.pub"
+#echo "#### root_rsa.pub:"
+#cat "${KEYDIR}/root_rsa.pub"
