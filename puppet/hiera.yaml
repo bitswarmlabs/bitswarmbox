@@ -7,7 +7,7 @@
   - "common"
   - "%{::provisioner}"
   - "%{::environment}"
-  - "%{::osfamily}"
+  - "%{::operatingsystem}"
   - "%{::app_project}"
   - "local"
 :yaml:

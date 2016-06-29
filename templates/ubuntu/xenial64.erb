@@ -13,7 +13,8 @@
         "source_ami": "<%= @aws_source_ami %>",
         "user_data": "<%= @aws_user_data %>",
     <%- end -%>
-        "provisioner": "<%= @provisioner %>"
+        "provisioner": "<%= @provisioner %>",
+        "environment": "<%= @app_environment || 'production' %>"
     },
 
     "provisioners": [
@@ -40,6 +41,7 @@
                 "scripts/vmtools.sh",
             <%- end -%>
             <%- if @puppetserver -%>
+                "scripts/puppet.sh",
                 "scripts/puppetserver.sh",
             <%- elsif @puppet -%>
                 "scripts/puppet.sh",
@@ -92,7 +94,8 @@
                 "puppetversion": "4.0",
                 "app_project": "{{user `project`}}",
                 "app_creator": "{{user `created_by`}}",
-                "app_version": "{{user `version`}}"
+                "app_version": "{{user `version`}}",
+                "app_environment": "{{user `environment`}}"
             },
             "manifest_file": "puppet/environments/<%= @provisioner %>/manifests/base.pp",
             "module_paths": [
