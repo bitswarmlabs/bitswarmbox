@@ -1,7 +1,6 @@
 ---
 classes:
   - bsl_bootstrap::puppetmaster::prepare
-  - bsl_bootstrap::puppetmaster::setup
 
 hello_worlds:
   - "hello from Packer's hieradata/puppetmaster.yaml"
