@@ -8,7 +8,7 @@
 
 echo "## Generated Hiera files awaiting implementation by bsl_bootstrap init script:"
 
-set +x
+set -v
 cat /etc/puppetlabs/code/bsl_bootstrap/hiera.yaml
 
 cat /etc/puppetlabs/code/bsl_bootstrap/hieradata/puppetmaster.yaml
