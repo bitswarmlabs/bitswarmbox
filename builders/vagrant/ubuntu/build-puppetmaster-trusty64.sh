@@ -5,7 +5,7 @@ which bitswarmbox || gem install bitswarmbox
 bitswarmbox build vagrant \
     --name=ubuntu-trusty64-puppetserver \
     --template=ubuntu/trusty64 \
-    --provider=virtualbox \
+    --provider=vmware \
     --puppetserver --bootstrap
 
 #bitswarmbox build aws \
