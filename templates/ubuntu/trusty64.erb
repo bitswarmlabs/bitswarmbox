@@ -95,7 +95,8 @@
                 "app_project": "{{user `project`}}",
                 "app_creator": "{{user `created_by`}}",
                 "app_version": "{{user `version`}}",
-                "app_environment": "{{user `environment`}}"
+                "app_environment": "{{user `environment`}}",
+                "packer_provider": "<%= @provider %>"
             },
             "manifest_file": "puppet/environments/<%= @provisioner %>/manifests/base.pp",
             "module_paths": [
