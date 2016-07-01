@@ -68,3 +68,7 @@ output-*
 
 # Vagrant
 .vagrant/
+
+# All modules in puppet/modules except for packer because r10k
+puppet/modules
+!puppet/modules/packer
