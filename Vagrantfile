@@ -45,18 +45,28 @@ Vagrant.configure(2) do |config|
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |v|
     # Display the VirtualBox GUI when booting the machine
-    #vb.gui = true
+    #b.gui = true
 
     # Customize the amount of memory on the VM:
-    vb.memory = "2048"
+    v.memory = "2048"
 
     # Customize the number of CPUs on the VM:
-    vb.cpus = 2
+    v.cpus = 2
   end
+
+  config.vm.provider "vmware" do |v|
+    # Display the VirtualBox GUI when booting the machine
+    #v.gui = true
+
+    # Customize the amount of memory on the VM:
+    v.vmx["memsize"] = "2048"
+
+    # Customize the number of CPUs on the VM:
+    v.vmx["numvcpus"] = "2"
+  end
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -106,6 +116,7 @@ Vagrant.configure(2) do |config|
         "provisioner" => "vagrant",
         "puppetversion" => "4.0",
         "app_project" => "puppetmaster",
+        "app_environment" => "production",
     }
 
     puppet.options = [

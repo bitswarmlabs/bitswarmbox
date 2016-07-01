@@ -5,7 +5,7 @@ which bitswarmbox || gem install bitswarmbox
 bitswarmbox build vagrant \
     --name=ubuntu-xenial64-puppetserver \
     --template=ubuntu/xenial64 \
-    --provider=virtualbox \
+    --provider=vmware \
     --puppetserver --bootstrap
 
 #bitswarmbox build aws \
