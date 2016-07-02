@@ -39,4 +39,3 @@ esac
 
 # clean up any artifacts
 rm -f /home/vagrant/shutdown.sh
-

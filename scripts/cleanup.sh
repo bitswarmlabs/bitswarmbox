@@ -47,6 +47,10 @@ if [ -e /etc/puppetlabs/puppetdb/ssl ]; then
     rm -rf /etc/puppetlabs/puppetdb/ssl/*
 fi
 
-echo "Reverting /etc/hosts"
-cp /etc/hosts.orig /etc/hosts
-rm -f /etc/hosts.orig
+echo "Removing certname directive in puppet.conf"
+cp /etc/puppetlabs/puppet/puppet.conf /tmp/puppet.conf
+sed -i '/certname\s*\=.*$/d' /etc/puppetlabs/puppet/puppet.conf
+diff /etc/puppetlabs/puppet/puppet.conf /tmp/puppet.conf
+
+echo "Cleaning up /tmp"
+find /tmp -mindepth 1 -delete

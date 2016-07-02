@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "Resetting /etc/hosts"
+cp /etc/hosts.orig /etc/hosts
+rm -f /etc/hosts.orig
+
 # zero any and all free space
 echo "Cleaning free space..."
 dd if=/dev/zero of=/EMPTY bs=1M
