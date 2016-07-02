@@ -1,5 +1,4 @@
 #!/usr/bin/env rake
-
 begin
   require 'bundler/setup'
 rescue LoadError
@@ -27,6 +26,10 @@ Cucumber::Rake::Task.new(:features) do |t|
   t.cucumber_opts = 'features --format pretty -x'
   t.fork = false
 end
+
+# ra10ke Puppetfile linting
+# https://github.com/tampakrap/ra10ke/
+require 'ra10ke'
 
 ##
 # By default, just run the tests.

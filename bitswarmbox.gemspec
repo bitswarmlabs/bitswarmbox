@@ -39,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'aruba', '~> 0.8'
   spec.add_development_dependency 'fakefs', '~> 0.6'
   spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'ra10ke'
 
   spec.add_development_dependency 'ruby-debug-ide', '0.4.24'
   spec.add_development_dependency 'debase', '0.2.1'
