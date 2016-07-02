@@ -29,3 +29,6 @@ for f in $(find /opt/puppetlabs/bin -type l -or -type f); do
 done
 
 echo "## Puppet executable $(which puppet) version $(puppet --version)"
+
+echo "## Creating local alias for $(facter hostname) and $(facter fqdn)"
+puppet apply -v -e 'host { $::hostname: ip => "127.0.0.1", host_aliases => [$::fqdn] }'

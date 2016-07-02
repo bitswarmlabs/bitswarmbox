@@ -33,3 +33,5 @@ mkdir -p /usr/local/sbin
 
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
+
+cp /etc/hosts /etc/hosts.orig

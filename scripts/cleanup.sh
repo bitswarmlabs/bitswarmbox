@@ -46,3 +46,7 @@ if [ -e /etc/puppetlabs/puppetdb/ssl ]; then
     set -x
     rm -rf /etc/puppetlabs/puppetdb/ssl/*
 fi
+
+echo "Reverting /etc/hosts"
+cp /etc/hosts.orig /etc/hosts
+rm -f /etc/hosts.orig
