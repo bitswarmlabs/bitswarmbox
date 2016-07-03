@@ -10,7 +10,7 @@ class packer::aws::users(
     notify { "# Hello?: ${helloworld}": }
   }
 
-  class { 'ohmyzsh::config': theme_hostname_slug => '%M' }
+  class { 'ohmyzsh::config': theme_hostname_slug => '%M' }->Class['ohmyzsh']
 
   if str2bool($::packer::aws::manage_users) {
     # don't need to do much for this user as its managed typically by cloud-init
