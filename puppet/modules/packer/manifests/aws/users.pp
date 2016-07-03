@@ -10,7 +10,7 @@ class packer::aws::users(
 
   include ohmyzsh
 
-  if and str2bool($::packer::aws::manage_users) {
+  if str2bool($::packer::aws::manage_users) {
     # don't need to do much for this user as its managed typically by cloud-init
     user { $service_acct:
       ensure     => present,
