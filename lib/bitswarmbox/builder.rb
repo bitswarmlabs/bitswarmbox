@@ -154,7 +154,7 @@ module BitswarmBox
           FileUtils.mv(BitswarmBox.config.working_dir + box_name,
                      "#{original_directory}/#{box_name}")
         elsif @provisioner == 'aws'
-          puts "All done! AWS EC2 AMI #{ami} created."
+          puts "All done! AWS EC2 AMI #{ami} created for #{@build_name}."
         end
 
       else
