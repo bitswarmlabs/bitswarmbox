@@ -2,6 +2,8 @@ class packer::aws::users(
   $helloworld = undef,
 ) {
   include '::packer::aws'
+  include '::ohmyzsh'
+
   $service_acct = $::packer::aws::local_service_acct_user
 
   if $helloworld {
@@ -15,6 +17,7 @@ class packer::aws::users(
     user { $service_acct:
       ensure     => present,
       shell      => $::ohmyzsh::config::path,
+      require    => Class['::ohmyzsh'],
     }
   }
 
