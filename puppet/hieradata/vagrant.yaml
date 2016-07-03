@@ -2,4 +2,5 @@
 classes:
   - packer::vagrant
 
+# disabling the bsl-bootstrap-init script so as to permit vagrant's own puppet provisioning
 bsl_bootstrap::puppetmaster::install::enable: false

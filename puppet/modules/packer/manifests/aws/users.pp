@@ -1,10 +1,17 @@
-class packer::aws::users {
+class packer::aws::users(
+  $helloworld = undef,
+) {
   include '::packer::aws'
   $service_acct = $::packer::aws::local_service_acct_user
+
+  if $helloworld {
+    notify { "# Hello?: ${helloworld}": }
+  }
 
   include ohmyzsh
 
   if and str2bool($::packer::aws::manage_users) {
+    # don't need to do much for this user as its managed typically by cloud-init
     user { $service_acct:
       ensure     => present,
       shell      => $::ohmyzsh::config::path,

@@ -1,3 +1,7 @@
 ---
+packer::aws::local_service_acct_user: 'ubuntu'
+packer::aws::local_service_acct_gecos: 'Ubuntu'
+packer::aws::helloworld: 'Hello from hieradata/Ubuntu.yaml'
+
 ohmyzsh::plugins:
   - ubuntu

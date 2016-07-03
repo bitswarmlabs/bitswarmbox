@@ -6,6 +6,5 @@ classes:
 #  - packer::ec2::cloudinit
 #  - packer::ec2::sshd
 
-packer::aws::users::ohmyzsh: true
 ohmyzsh::plugins:
   - aws

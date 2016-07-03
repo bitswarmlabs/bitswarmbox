@@ -1,15 +1,13 @@
 # Hiera config file used by Packer provisioner.
 ---
-:logger: console
 :backends:
   - yaml
 :hierarchy:
-  - "common"
-  - "%{::provisioner}"
-  - "%{::environment}"
-  - "%{::operatingsystem}"
-  - "%{::app_project}"
   - "local"
+  - "%{::app_project}"
+  - "%{::operatingsystem}"
+  - "%{::environment}"
+  - "%{::provisioner}"
+  - "common"
 :yaml:
   :datadir: "/tmp/hieradata"
-:merge_behavior: deeper

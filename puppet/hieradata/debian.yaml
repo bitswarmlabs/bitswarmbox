@@ -1,6 +1,7 @@
 ---
 packer::aws::local_service_acct_user: 'admin'
 packer::aws::local_service_acct_gecos: 'Admin'
+packer::aws::helloworld: 'Hello from hieradata/Ubuntu.yaml'
 
 ohmyzsh::plugins:
   - debian
