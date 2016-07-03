@@ -2,7 +2,6 @@ class packer::aws::users(
   $helloworld = undef,
 ) {
   include '::packer::aws'
-  include '::ohmyzsh'
 
   $service_acct = $::packer::aws::local_service_acct_user
 
@@ -10,14 +9,14 @@ class packer::aws::users(
     notify { "# Hello?: ${helloworld}": }
   }
 
-  class { 'ohmyzsh::config': theme_hostname_slug => '%M' }->Class['ohmyzsh']
+  class { 'ohmyzsh::config': theme_hostname_slug => '%M' }
 
   if str2bool($::packer::aws::manage_users) {
     # don't need to do much for this user as its managed typically by cloud-init
     user { $service_acct:
       ensure     => present,
       shell      => $::ohmyzsh::config::path,
-      require    => Class['::ohmyzsh'],
+      require    => Package[$::ohmyzsh::config::zsh_package_name],
     }
   }
 
