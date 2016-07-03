@@ -8,7 +8,7 @@ class packer::aws::users(
     notify { "# Hello?: ${helloworld}": }
   }
 
-  include ohmyzsh
+  class { 'ohmyzsh::config': theme_hostname_slug => '%M' }
 
   if str2bool($::packer::aws::manage_users) {
     # don't need to do much for this user as its managed typically by cloud-init
@@ -17,8 +17,6 @@ class packer::aws::users(
       shell      => $::ohmyzsh::config::path,
     }
   }
-
-  class { 'ohmyzsh::config': theme_hostname_slug => '%M' }
 
   # for multiple users in one shot and set their shell to zsh
   ohmyzsh::install { 'root': set_sh => true, disable_auto_update => true }
