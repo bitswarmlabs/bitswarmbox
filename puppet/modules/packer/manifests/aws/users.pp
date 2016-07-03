@@ -2,18 +2,13 @@ class packer::aws::users {
   include '::packer::aws'
   $service_acct = $::packer::aws::local_service_acct_user
 
-  if $service_acct != 'ubuntu' and str2bool($::packer::aws::manage_users) {
+  include ohmyzsh
+
+  if and str2bool($::packer::aws::manage_users) {
     user { $service_acct:
       ensure     => present,
-      home       => "/home/${service_acct}",
-      managehome => true,
+      shell      => $::ohmyzsh::config::path,
     }
-    # ->
-    # sudo::sudoers { $service_acct:
-    #   ensure   => 'present',
-    #   users    => [$service_acct],
-    #   tags     => ['NOPASSWD'],
-    # }
   }
 
   class { 'ohmyzsh::config': theme_hostname_slug => '%M' }
