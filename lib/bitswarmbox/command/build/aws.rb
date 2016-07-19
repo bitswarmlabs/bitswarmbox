@@ -21,6 +21,9 @@ module BitswarmBox
               ['--aws_user_data', 'User data to send to AWS builder'],
               ['--puppet', 'Install basic Puppet client'],
               ['--puppetserver', 'Install Puppet Server and provision'],
+              ['--foreman', 'Install Foreman and provision'],
+              ['--foreman-admin-username', 'If Foreman, the admin username (required if --foreman enabled)'],
+              ['--foreman-admin-password', 'If Foreman, the password (required if --foreman enabled)'],
               ['--docker', 'Install latest Docker'],
               ['--chef', 'Install basic Chef client'],
               ['--ansible', 'Install basic Ansible client'],
@@ -51,6 +54,9 @@ module BitswarmBox
 
           @build[:puppet] = argv.flag?('puppet')
           @build[:puppetserver] = argv.flag?('puppetserver')
+          @build[:foreman] = argv.flag?('foreman')
+          @build[:foreman_admin_username] = argv.option('foreman-admin-username')
+          @build[:foreman_admin_password] = argv.option('foreman-admin-password')
           @build[:docker] = argv.flag?('docker')
           @build[:chef] = argv.flag?('chef')
           @build[:ansible] = argv.flag?('ansible')
@@ -70,8 +76,20 @@ module BitswarmBox
             help! "A #{key} is required!" if @build[key.to_sym].nil?
           end
 
-          if @build[:puppetserver] && !@build[:app_project]
-            @build[:app_project] = 'puppetmaster'
+          if !@build[:app_project]
+            if @build[:puppetserver]
+              @build[:app_project] = 'puppetmaster'
+            elsif @build[:foreman]
+              @build[:app_project] = 'foreman'
+            else
+              help! "Cannot be both Puppetserver and Foreman, choose one"
+            end
+
+            if @build[:foreman]
+              if @build[:foreman_admin_username].nil? || @build[:foreman_admin_password].nil?
+                help! "Must provide --foreman-admin-username and --foreman-admin-password"
+              end
+            end
           end
         end
 

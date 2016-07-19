@@ -1,0 +1,18 @@
+---
+classes:
+  - bsl_bootstrap::foreman::prepare
+
+bsl_bootstrap::foreman::config::r10k_sources:
+  private:
+    remote: 'git@github.com:bitswarmlabs/puppetmaster-private.git'
+    basedir:  '/etc/puppetlabs/code/private'
+    provider: 'github'
+    project: 'bitswarmlabs/puppetmaster-private'
+    manage_deploy_key: true
+
+  public:
+    remote: 'https://github.com/bitswarmlabs/puppetmaster-envs.git'
+    basedir: "/etc/puppetlabs/code/environments"
+    provider: 'github'
+    project: 'bitswarmlabs/puppetmaster-envs'
+    manage_deploy_key: false

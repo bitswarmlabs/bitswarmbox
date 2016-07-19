@@ -21,7 +21,7 @@ dpkg -i puppetlabs-release-pc1-$os_release.deb
 apt-get -q update
 
 # install puppet
-$minimal_apt_get_install puppet-agent
+$minimal_apt_get_install puppet-agent facter hiera
 
 echo "## Creating symlink for Puppet binaries in /usr/bin"
 for f in $(find /opt/puppetlabs/bin -type l -or -type f); do
@@ -31,4 +31,4 @@ done
 echo "## Puppet executable $(which puppet) version $(puppet --version)"
 
 echo "## Creating local alias for $(facter hostname) and $(facter fqdn)"
-puppet apply -v -e 'host { $::hostname: ip => "127.0.0.1", host_aliases => [$::fqdn] }'
+puppet apply -v -e 'host { $::fqdn: ip => "127.0.0.1", host_aliases => [$::hostname] }'

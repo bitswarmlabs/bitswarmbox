@@ -18,7 +18,7 @@
     },
 
     "provisioners": [
-    <%- if @puppetserver -%>
+    <%- if @puppetserver || @foreman -%>
         {
             "type": "shell-local",
             "command": "scripts/local-ssh-keygen.sh"
@@ -32,7 +32,12 @@
         {
             "type": "shell",
             "environment_vars": [
-              "PACKER_PROVISIONER=<%= @provisioner %>"
+              "PACKER_PROVISIONER=<%= @provisioner %>",
+            <%- if @foreman -%>
+              "FOREMAN_ADMIN_USERNAME=<%= @foreman_admin_username %>",
+              "FOREMAN_ADMIN_PASSWORD=<%= @foreman_admin_password %>",
+            <%- end -%>
+              "PACKER_PROVIDER=<%= @provider %>"
             ],
             "scripts": [
                 "scripts/prepare.sh",
@@ -43,8 +48,11 @@
             <%- if @puppetserver -%>
                 "scripts/puppet.sh",
                 "scripts/puppetserver.sh",
-            <%- elsif @puppet -%>
+            <%- elsif @puppet || @foreman -%>
                 "scripts/puppet.sh",
+                <%- if @foreman -%>
+                "scripts/foreman.sh",
+                <%- end -%>
             <%- end -%>
             <%- if @chef -%>
                 "scripts/chef.sh",

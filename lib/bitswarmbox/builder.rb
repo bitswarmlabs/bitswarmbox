@@ -5,10 +5,10 @@ module BitswarmBox
 
     attr_accessor :name, :description
     attr_accessor :template, :scripts, :provider, :provisioner, :packer_shell_exec_cmd
-    attr_accessor :puppet, :puppetserver, :ansible, :chef, :docker, :bootstrap
+    attr_accessor :puppet, :puppetserver, :foreman, :ansible, :chef, :docker, :bootstrap
     attr_accessor :app_creator, :app_project, :app_version
     attr_accessor :aws_access_key, :aws_secret_key, :aws_region, :aws_source_ami, :aws_user_data
-
+    attr_accessor :foreman_admin_username, :foreman_admin_password
     # Initialise a new build.
     #
     # @param env [BitswarmBox::Environment] environment to operate in.
@@ -36,6 +36,7 @@ module BitswarmBox
 
       @puppet = args[:puppet]
       @puppetserver = args[:puppetserver]
+      @foreman = args[:foreman]
       @chef = args[:chef]
       @ansible = args[:ansible]
       @docker = args[:docker]
@@ -71,6 +72,9 @@ module BitswarmBox
                                             scripts: scripts,
                                             puppet: puppet,
                                             puppetserver: puppetserver,
+                                            foreman: foreman,
+                                            foreman_admin_username: foreman_admin_username,
+                                            foreman_admin_password: foreman_admin_password,
                                             chef: chef,
                                             ansible: ansible,
                                             docker: docker,
@@ -92,6 +96,9 @@ module BitswarmBox
                                             scripts: scripts,
                                             puppet: puppet,
                                             puppetserver: puppetserver,
+                                            foreman: foreman,
+                                            foreman_admin_username: foreman_admin_username,
+                                            foreman_admin_password: foreman_admin_password,
                                             chef: chef,
                                             ansible: ansible,
                                             docker: docker,
