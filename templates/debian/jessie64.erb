@@ -117,7 +117,7 @@
             "execute_command": "cd {{.WorkingDir}} && {{.FacterVars}}{{if .Sudo}} sudo -E {{end}}puppet apply --verbose --modulepath='{{.ModulePath}}:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}"
         },
     <%- end -%>
-    <%- if @puppetserver -%>
+    <%- if @puppetserver || @foreman -%>
         {
             "type": "shell",
             "scripts": [

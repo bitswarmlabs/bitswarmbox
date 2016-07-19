@@ -19,7 +19,12 @@ apt-get update && $minimal_apt_get_install foreman-installer
 echo "## Installing Foreman"
 set -x
 foreman-installer \
-    --skip-checks-i-know-better \
+#    --skip-checks-i-know-better \
     --foreman-admin-username=$FOREMAN_ADMIN_USERNAME \
     --foreman-admin-password=$FOREMAN_ADMIN_PASSWORD
 set +x
+
+echo "## Creating symlink for Puppet binaries in /usr/bin"
+for f in $(find /opt/puppetlabs/bin -type l -or -type f); do
+    ln -svf $(readlink -f "$f") /usr/bin/$(basename "$f")
+done

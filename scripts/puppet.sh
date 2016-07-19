@@ -21,7 +21,7 @@ dpkg -i puppetlabs-release-pc1-$os_release.deb
 apt-get -q update
 
 # install puppet
-$minimal_apt_get_install puppet-agent facter hiera
+$minimal_apt_get_install puppet-agent
 
 echo "## Creating symlink for Puppet binaries in /usr/bin"
 for f in $(find /opt/puppetlabs/bin -type l -or -type f); do

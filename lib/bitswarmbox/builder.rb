@@ -41,6 +41,9 @@ module BitswarmBox
       @ansible = args[:ansible]
       @docker = args[:docker]
 
+      @foreman_admin_username = args[:foreman_admin_username]
+      @foreman_admin_password = args[:foreman_admin_password]
+
       @app_creator = args[:app_creator] || ENV['USER']
       @app_project = args[:app_project] || 'default'
       @app_version = args[:app_version] || BitswarmBox::VERSION
