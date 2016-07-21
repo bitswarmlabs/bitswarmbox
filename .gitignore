@@ -57,6 +57,7 @@ keys/
 !keys/.gitkeep
 
 # Local Hiera overrides
+puppet/hieradata/local/
 puppet/hieradata/local.yaml
 
 # Cache objects

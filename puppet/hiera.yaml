@@ -3,6 +3,7 @@
 :backends:
   - yaml
 :hierarchy:
+  - "local/%{::app_project}"
   - "local"
   - "%{::app_project}"
   - "%{::operatingsystem}"
