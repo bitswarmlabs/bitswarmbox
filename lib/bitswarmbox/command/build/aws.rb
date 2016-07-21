@@ -80,12 +80,6 @@ module BitswarmBox
             else
               help! "Cannot be both Puppetserver and Foreman, choose one"
             end
-
-            if @build[:foreman]
-              if @build[:foreman_admin_username].nil? || @build[:foreman_admin_password].nil?
-                help! "Must provide --foreman-admin-username and --foreman-admin-password"
-              end
-            end
           end
         end
 
