@@ -11,6 +11,8 @@ echo "## Generated Hiera files awaiting implementation by bsl_bootstrap init scr
 set -v
 cat /etc/puppetlabs/code/bsl_bootstrap/hiera.yaml
 
-cat /etc/puppetlabs/code/bsl_bootstrap/hieradata/puppetmaster.yaml
+for f in $(find /etc/puppetlabs/code/bsl_bootstrap/hieradata -type f); do
+    cat $f
+done
 
 exit 0

@@ -14,17 +14,5 @@ echo "deb http://deb.theforeman.org/ plugins 1.12" >> /etc/apt/sources.list.d/fo
 $minimal_apt_get_install ca-certificates
 wget -q https://deb.theforeman.org/pubkey.gpg -O- | apt-key add -
 
-apt-get update && $minimal_apt_get_install foreman-installer
-
-echo "## Installing Foreman"
-set -x
-foreman-installer \
-#    --skip-checks-i-know-better \
-    --foreman-admin-username=$FOREMAN_ADMIN_USERNAME \
-    --foreman-admin-password=$FOREMAN_ADMIN_PASSWORD
-set +x
-
-echo "## Creating symlink for Puppet binaries in /usr/bin"
-for f in $(find /opt/puppetlabs/bin -type l -or -type f); do
-    ln -svf $(readlink -f "$f") /usr/bin/$(basename "$f")
-done
+apt-get update -qy
+$minimal_apt_get_install foreman-installer

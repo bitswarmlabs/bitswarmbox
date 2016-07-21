@@ -18,7 +18,7 @@
     },
 
     "provisioners": [
-    <%- if @puppetserver -%>
+    <%- if @puppetserver || @foreman -%>
         {
             "type": "shell-local",
             "command": "scripts/local-ssh-keygen.sh"
@@ -43,8 +43,11 @@
             <%- if @puppetserver -%>
                 "scripts/puppet.sh",
                 "scripts/puppetserver.sh",
-            <%- elsif @puppet -%>
+            <%- elsif @puppet || @foreman -%>
                 "scripts/puppet.sh",
+                <%- if @foreman -%>
+                "scripts/foreman.sh",
+                <%- end -%>
             <%- end -%>
             <%- if @chef -%>
                 "scripts/chef.sh",
@@ -116,6 +119,14 @@
                 "scripts/puppetserver-post.sh"
             ],
             "execute_command": "<%= @shell_exec_cmd %>"
+        },
+    <%- elsif @foreman -%>
+        {
+        "type": "shell",
+        "scripts": [
+        "scripts/foreman-post.sh"
+        ],
+        "execute_command": "<%= @shell_exec_cmd %>"
         },
     <%- end -%>
         {

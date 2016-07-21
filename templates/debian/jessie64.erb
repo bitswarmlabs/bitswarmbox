@@ -32,12 +32,7 @@
         {
             "type": "shell",
             "environment_vars": [
-              "PACKER_PROVISIONER=<%= @provisioner %>",
-            <%- if @foreman -%>
-              "FOREMAN_ADMIN_USERNAME=<%= @foreman_admin_username %>",
-              "FOREMAN_ADMIN_PASSWORD=<%= @foreman_admin_password %>",
-            <%- end -%>
-              "PACKER_PROVIDER=<%= @provider %>"
+              "PACKER_PROVISIONER=<%= @provisioner %>"
             ],
             "scripts": [
                 "scripts/prepare.sh",
@@ -117,13 +112,21 @@
             "execute_command": "cd {{.WorkingDir}} && {{.FacterVars}}{{if .Sudo}} sudo -E {{end}}puppet apply --verbose --modulepath='{{.ModulePath}}:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}"
         },
     <%- end -%>
-    <%- if @puppetserver || @foreman -%>
+    <%- if @puppetserver -%>
         {
             "type": "shell",
             "scripts": [
                 "scripts/puppetserver-post.sh"
             ],
             "execute_command": "<%= @shell_exec_cmd %>"
+        },
+    <%- elsif @foreman -%>
+        {
+        "type": "shell",
+        "scripts": [
+        "scripts/foreman-post.sh"
+        ],
+        "execute_command": "<%= @shell_exec_cmd %>"
         },
     <%- end -%>
         {
