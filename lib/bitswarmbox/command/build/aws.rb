@@ -22,8 +22,6 @@ module BitswarmBox
               ['--puppet', 'Install basic Puppet client'],
               ['--puppetserver', 'Install Puppet Server and provision'],
               ['--foreman', 'Install Foreman and provision'],
-              ['--foreman-admin-username', 'If Foreman, the admin username (required if --foreman enabled)'],
-              ['--foreman-admin-password', 'If Foreman, the password (required if --foreman enabled)'],
               ['--docker', 'Install latest Docker'],
               ['--chef', 'Install basic Chef client'],
               ['--ansible', 'Install basic Ansible client'],
@@ -55,8 +53,6 @@ module BitswarmBox
           @build[:puppet] = argv.flag?('puppet')
           @build[:puppetserver] = argv.flag?('puppetserver')
           @build[:foreman] = argv.flag?('foreman')
-          @build[:foreman_admin_username] = argv.option('foreman-admin-username')
-          @build[:foreman_admin_password] = argv.option('foreman-admin-password')
           @build[:docker] = argv.flag?('docker')
           @build[:chef] = argv.flag?('chef')
           @build[:ansible] = argv.flag?('ansible')

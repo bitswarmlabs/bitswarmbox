@@ -8,7 +8,7 @@ module BitswarmBox
     attr_accessor :puppet, :puppetserver, :foreman, :ansible, :chef, :docker, :bootstrap
     attr_accessor :app_creator, :app_project, :app_version
     attr_accessor :aws_access_key, :aws_secret_key, :aws_region, :aws_source_ami, :aws_user_data
-    attr_accessor :foreman_admin_username, :foreman_admin_password
+
     # Initialise a new build.
     #
     # @param env [BitswarmBox::Environment] environment to operate in.
@@ -40,9 +40,6 @@ module BitswarmBox
       @chef = args[:chef]
       @ansible = args[:ansible]
       @docker = args[:docker]
-
-      @foreman_admin_username = args[:foreman_admin_username]
-      @foreman_admin_password = args[:foreman_admin_password]
 
       @app_creator = args[:app_creator] || ENV['USER']
       @app_project = args[:app_project] || 'default'
@@ -76,8 +73,6 @@ module BitswarmBox
                                             puppet: puppet,
                                             puppetserver: puppetserver,
                                             foreman: foreman,
-                                            foreman_admin_username: foreman_admin_username,
-                                            foreman_admin_password: foreman_admin_password,
                                             chef: chef,
                                             ansible: ansible,
                                             docker: docker,
@@ -100,8 +95,6 @@ module BitswarmBox
                                             puppet: puppet,
                                             puppetserver: puppetserver,
                                             foreman: foreman,
-                                            foreman_admin_username: foreman_admin_username,
-                                            foreman_admin_password: foreman_admin_password,
                                             chef: chef,
                                             ansible: ansible,
                                             docker: docker,
