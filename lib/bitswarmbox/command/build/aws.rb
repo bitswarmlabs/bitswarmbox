@@ -77,7 +77,7 @@ module BitswarmBox
               @build[:app_project] = 'puppetmaster'
             elsif @build[:foreman]
               @build[:app_project] = 'foreman'
-            else
+            elsif @build[:puppetserver] && @build[:foreman]
               help! "Cannot be both Puppetserver and Foreman, choose one"
             end
           end

@@ -14,8 +14,8 @@ echo "deb http://deb.theforeman.org/ plugins 1.12" >> /etc/apt/sources.list.d/fo
 $minimal_apt_get_install ca-certificates
 wget -q https://deb.theforeman.org/pubkey.gpg -O- | apt-key add -
 
-apt-get update -qy
-$minimal_apt_get_install foreman-installer
+#apt-get update -qy
+#$minimal_apt_get_install foreman-installer
 
 #foreman-installer -v --colors --skip-checks-i-know-better
-foreman-installer -v --colors
+#foreman-installer -v --colors
