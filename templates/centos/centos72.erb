@@ -1,0 +1,209 @@
+{
+"variables": {
+"name": "<%= @name || '{{ .Name }}' %>",
+"created_by": "<%= @app_creator || ENV['USER'] %>",
+"project": "<%= @app_project %>",
+"version": "<%= @app_version %>",
+<%- if @provisioner == "aws" -%>
+    "ami_name": "<%= @name %>-<%= @app_version %>-{{isotime \"200601021504\"}}",
+    "ami_description": "<%= @description %> <%= @app_version %> {{isotime \"2006-01-02@15:04\"}}",
+    "aws_access_key": "<%= @aws_access_key %>",
+    "aws_secret_key": "<%= @aws_secret_key %>",
+    "aws_region": "<%= @aws_region %>",
+    "source_ami": "<%= @aws_source_ami %>",
+    "user_data": "<%= @aws_user_data %>",
+<%- end -%>
+"provisioner": "<%= @provisioner %>",
+"environment": "<%= @app_environment || 'production' %>"
+},
+
+"provisioners": [
+<%- if @puppetserver || @foreman -%>
+    {
+    "type": "shell-local",
+    "command": "scripts/local-ssh-keygen.sh"
+    },
+    {
+    "type": "file",
+    "source": "keys",
+    "destination": "/tmp"
+    },
+<%- end -%>
+{
+"type": "shell",
+"environment_vars": [
+"PACKER_PROVISIONER=<%= @provisioner %>"
+],
+"scripts": [
+"scripts/prepare.sh",
+<%- if @provisioner == "vagrant" -%>
+    "scripts/vagrant.sh",
+    "scripts/vmtools.sh",
+<%- end -%>
+<%- if @puppetserver -%>
+    "scripts/puppet.sh",
+    "scripts/puppetserver.sh",
+<%- elsif @puppet || @foreman -%>
+    "scripts/puppet.sh",
+    <%- if @foreman -%>
+        "scripts/foreman.sh",
+    <%- end -%>
+<%- end -%>
+<%- if @chef -%>
+    "scripts/chef.sh",
+<%- end -%>
+<%- if @ansible -%>
+    "scripts/ansible.sh",
+<%- end -%>
+<%- if @docker -%>
+    "scripts/docker.sh",
+<%- end -%>
+<%- @scripts.each do |script| -%>
+    "scripts/<%= script %>",
+<%- end -%>
+"scripts/prepare-done.sh"
+],
+"execute_command": "<%= @shell_exec_cmd %>"
+},
+<%- if @bootstrap -%>
+    {
+    "type": "file",
+    "source": "puppet/hieradata",
+    "destination": "/tmp"
+    },
+    {
+    "type": "file",
+    "source": "puppet/Puppetfile",
+    "destination": "/tmp/Puppetfile"
+    },
+    {
+    "type": "puppet-masterless",
+    "facter": {
+    "provisioner": "{{user `provisioner`}}",
+    "app_project": "{{user `project`}}",
+    "app_creator": "{{user `created_by`}}",
+    "app_version": "{{user `version`}}"
+    },
+    "manifest_file": "puppet/manifests/r10k_bootstrap.pp",
+    "extra_arguments": [
+    "--show_diff --verbose"
+    ],
+    "hiera_config_path": "puppet/hiera.yaml"
+    },
+    {
+    "type": "puppet-masterless",
+    "facter": {
+    "provisioner": "{{user `provisioner`}}",
+    "puppetversion": "4.0",
+    "app_project": "{{user `project`}}",
+    "app_creator": "{{user `created_by`}}",
+    "app_version": "{{user `version`}}",
+    "app_environment": "{{user `environment`}}",
+    "packer_provider": "<%= @provider %>"
+    },
+    "manifest_file": "puppet/environments/<%= @provisioner %>/manifests/base.pp",
+    "module_paths": [
+    "puppet/modules"
+    ],
+    "extra_arguments": [
+    "--show_diff --verbose"
+    ],
+    "hiera_config_path": "puppet/hiera.yaml",
+    "execute_command": "cd {{.WorkingDir}} && {{.FacterVars}}{{if .Sudo}} sudo -E {{end}}puppet apply --verbose --modulepath='{{.ModulePath}}:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}"
+    },
+<%- end -%>
+<%- if @puppetserver -%>
+    {
+    "type": "shell",
+    "scripts": [
+    "scripts/puppetserver-post.sh"
+    ],
+    "execute_command": "<%= @shell_exec_cmd %>"
+    },
+<%- elsif @foreman -%>
+    {
+    "type": "shell",
+    "scripts": [
+    "scripts/foreman-post.sh"
+    ],
+    "execute_command": "<%= @shell_exec_cmd %>"
+    },
+<%- end -%>
+{
+"type": "shell",
+"scripts": [
+"scripts/cleanup.sh",
+"scripts/cleanup-<%= @provisioner %>.sh"
+],
+"execute_command": "<%= @shell_exec_cmd %>"
+}
+],
+
+"builders": [
+<%- if @provisioner == "aws" -%>
+    {
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "{{user `aws_region`}}",
+    "source_ami": "{{user `source_ami`}}",
+    "instance_type": "c4.large",
+    "ssh_username": "admin",
+    "ami_description": "{{user `ami_description`}}",
+    "ami_name": "{{user `ami_name`}}",
+    "ssh_timeout": "10000s",
+    "ssh_pty": "true",
+    "user_data": "{{user `user_data`}}",
+    "run_tags": {
+    "created_by": "{{user `created_by`}}",
+    "project": "{{user `project`}}"
+    },
+    "tags": {
+    "created_by": "{{user `created_by`}}",
+    "project": "{{user `project`}}"
+    }
+    }
+<%- elsif @provisioner == "vagrant" -%>
+    {
+      "name": "<%= @name %>",
+      "type": "<%= @provider %>-iso",
+      <%- if @provider == "vmware" -%>
+          "guest_os_type": "redhat_64",
+          "tools_upload_flavor": "linux",
+      <%- else -%>
+          "guest_os_type": "RedHat_64",
+      <%- end -%>
+      "vm_name": "centos7",
+      "guest_os_type": "RedHat_64",
+      "iso_checksum_type": "sha256",
+      "iso_checksum": "9ed9ffb5d89ab8cca834afce354daa70a21dcb410f58287d6316259ff89758f5",
+      "iso_url": "http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+      "type": "virtualbox-iso",
+      "ssh_password": "vagrant",
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "50000s",
+      "headless": "true",
+      <%- if @provider == "virtualbox" -%>
+          "vboxmanage": [
+            [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+            [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+          ],
+      <%- end -%>
+      "http_directory": ".",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"
+      ],
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
+    }
+<%- end -%>
+],
+
+"post-processors": [
+<%- if @provisioner == "vagrant" -%>
+    {
+    "type": "vagrant",
+    "output": "<%= @name || '{{build_name}}' %>_<%= @app_version %>-{{isotime \"200601021504\"}}.box"
+    }
+<%- end -%>
+]
+}

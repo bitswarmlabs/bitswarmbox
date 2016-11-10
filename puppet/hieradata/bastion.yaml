@@ -1,0 +1,2 @@
+---
+packer::aws::local_service_acct_user: 'centos'
